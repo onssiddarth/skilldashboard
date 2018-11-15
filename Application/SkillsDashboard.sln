@@ -1,0 +1,55 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27004.2009
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SkillsDashboard.Web", "SkillsDashboard\SkillsDashboard.Web.csproj", "{73F4DF6E-68CC-43DD-8131-8CC3FDEA8428}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SkillsDashboard.API", "SkillsDashboard.API\SkillsDashboard.API.csproj", "{07D46CA5-4C6A-4903-971B-0B77D24EC219}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SkillsDashboard.DAL", "SkillsDashboard.DAL\SkillsDashboard.DAL.csproj", "{D358CC3F-95D3-4C88-91ED-EFC6F9D321C1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SkillsDashboard.BusinessEntities", "SkillsDashboard.BusinessEntities\SkillsDashboard.BusinessEntities.csproj", "{BE3C676E-8348-4505-8B70-289BCB75C879}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SkillsDashboard.BLO", "SkillsDashboard.BLO\SkillsDashboard.BLO.csproj", "{864B026D-E9DC-4065-B77B-4EE310D55A59}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SkillsDashboard.Utilities", "SkillsDashboard.Utilities\SkillsDashboard.Utilities.csproj", "{E6DAAE5F-910C-4229-AAFD-616517233D62}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{73F4DF6E-68CC-43DD-8131-8CC3FDEA8428}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{73F4DF6E-68CC-43DD-8131-8CC3FDEA8428}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{73F4DF6E-68CC-43DD-8131-8CC3FDEA8428}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{73F4DF6E-68CC-43DD-8131-8CC3FDEA8428}.Release|Any CPU.Build.0 = Release|Any CPU
+		{07D46CA5-4C6A-4903-971B-0B77D24EC219}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{07D46CA5-4C6A-4903-971B-0B77D24EC219}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{07D46CA5-4C6A-4903-971B-0B77D24EC219}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{07D46CA5-4C6A-4903-971B-0B77D24EC219}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D358CC3F-95D3-4C88-91ED-EFC6F9D321C1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D358CC3F-95D3-4C88-91ED-EFC6F9D321C1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D358CC3F-95D3-4C88-91ED-EFC6F9D321C1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D358CC3F-95D3-4C88-91ED-EFC6F9D321C1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BE3C676E-8348-4505-8B70-289BCB75C879}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BE3C676E-8348-4505-8B70-289BCB75C879}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BE3C676E-8348-4505-8B70-289BCB75C879}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BE3C676E-8348-4505-8B70-289BCB75C879}.Release|Any CPU.Build.0 = Release|Any CPU
+		{864B026D-E9DC-4065-B77B-4EE310D55A59}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{864B026D-E9DC-4065-B77B-4EE310D55A59}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{864B026D-E9DC-4065-B77B-4EE310D55A59}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{864B026D-E9DC-4065-B77B-4EE310D55A59}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E6DAAE5F-910C-4229-AAFD-616517233D62}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E6DAAE5F-910C-4229-AAFD-616517233D62}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E6DAAE5F-910C-4229-AAFD-616517233D62}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E6DAAE5F-910C-4229-AAFD-616517233D62}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {8FCD36A2-8482-4122-9FAB-2FC7D4729CFE}
+	EndGlobalSection
+EndGlobal

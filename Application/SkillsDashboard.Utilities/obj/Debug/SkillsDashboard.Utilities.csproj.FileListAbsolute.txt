@@ -1,0 +1,10 @@
+G:\DISS\Project\SourceCode\SkillsDashboard.Utilities\bin\SkillsDashboard.Utilities.dll.config
+G:\DISS\Project\SourceCode\SkillsDashboard.Utilities\bin\SkillsDashboard.Utilities.dll
+G:\DISS\Project\SourceCode\SkillsDashboard.Utilities\bin\SkillsDashboard.Utilities.pdb
+G:\DISS\Project\SourceCode\SkillsDashboard.Utilities\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+G:\DISS\Project\SourceCode\SkillsDashboard.Utilities\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+G:\DISS\Project\SourceCode\SkillsDashboard.Utilities\obj\Debug\SkillsDashboard.Utilities.csprojAssemblyReference.cache
+G:\DISS\Project\SourceCode\SkillsDashboard.Utilities\obj\Debug\SkillsDashboard.Utilities.csproj.CoreCompileInputs.cache
+G:\DISS\Project\SourceCode\SkillsDashboard.Utilities\obj\Debug\SkillsDashboard.Utilities.csproj.CopyComplete
+G:\DISS\Project\SourceCode\SkillsDashboard.Utilities\obj\Debug\SkillsDashboard.Utilities.dll
+G:\DISS\Project\SourceCode\SkillsDashboard.Utilities\obj\Debug\SkillsDashboard.Utilities.pdb

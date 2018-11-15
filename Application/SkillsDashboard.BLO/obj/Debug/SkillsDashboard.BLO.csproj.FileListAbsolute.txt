@@ -1,0 +1,16 @@
+G:\DISS\Project\SourceCode\SkillsDashboard.BLO\bin\SkillsDashboard.BLO.dll.config
+G:\DISS\Project\SourceCode\SkillsDashboard.BLO\bin\SkillsDashboard.BLO.dll
+G:\DISS\Project\SourceCode\SkillsDashboard.BLO\bin\SkillsDashboard.BLO.pdb
+G:\DISS\Project\SourceCode\SkillsDashboard.BLO\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+G:\DISS\Project\SourceCode\SkillsDashboard.BLO\bin\SkillsDashboard.BusinessEntities.dll
+G:\DISS\Project\SourceCode\SkillsDashboard.BLO\bin\SkillsDashboard.DAL.dll
+G:\DISS\Project\SourceCode\SkillsDashboard.BLO\bin\SkillsDashboard.BusinessEntities.pdb
+G:\DISS\Project\SourceCode\SkillsDashboard.BLO\bin\SkillsDashboard.BusinessEntities.dll.config
+G:\DISS\Project\SourceCode\SkillsDashboard.BLO\bin\SkillsDashboard.DAL.pdb
+G:\DISS\Project\SourceCode\SkillsDashboard.BLO\bin\SkillsDashboard.DAL.dll.config
+G:\DISS\Project\SourceCode\SkillsDashboard.BLO\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+G:\DISS\Project\SourceCode\SkillsDashboard.BLO\obj\Debug\SkillsDashboard.BLO.csprojAssemblyReference.cache
+G:\DISS\Project\SourceCode\SkillsDashboard.BLO\obj\Debug\SkillsDashboard.BLO.csproj.CoreCompileInputs.cache
+G:\DISS\Project\SourceCode\SkillsDashboard.BLO\obj\Debug\SkillsDashboard.BLO.csproj.CopyComplete
+G:\DISS\Project\SourceCode\SkillsDashboard.BLO\obj\Debug\SkillsDashboard.BLO.dll
+G:\DISS\Project\SourceCode\SkillsDashboard.BLO\obj\Debug\SkillsDashboard.BLO.pdb

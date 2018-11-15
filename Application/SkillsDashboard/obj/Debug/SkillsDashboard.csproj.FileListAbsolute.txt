@@ -1,0 +1,2 @@
+G:\DISS\Project\SourceCode\SkillsDashboard\obj\Debug\SkillsDashboard.csprojAssemblyReference.cache
+G:\DISS\Project\SourceCode\SkillsDashboard\obj\Debug\SkillsDashboard.csproj.CoreCompileInputs.cache
