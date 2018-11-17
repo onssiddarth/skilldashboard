@@ -10,7 +10,7 @@ namespace SkillsDashboard.BLO
 {
     public class SkillsBLO
     {
-        public SkillCollection GetAllSkills(string argLoggedInUser)
+        public SkillCollection GetAllSkills(int argLoggedInUser)
         {
             #region Declarations
             SkillCollection l_skillCollection = new SkillCollection();
@@ -22,7 +22,7 @@ namespace SkillsDashboard.BLO
             #endregion
             try
             {
-                l_Parameters.Add(l_SkillsDBManager.CreateParameter(ProcedureParams.LOGGEDINUSERID, argLoggedInUser, DbType.String));
+                l_Parameters.Add(l_SkillsDBManager.CreateParameter(ProcedureParams.LOGGEDINUSERID, argLoggedInUser, DbType.Int32));
 
                 l_SkillDataTable = l_SkillsDBManager.GetDataTable(StoredProcedures.GET_ALLSKILLS_AVAILABLE, CommandType.StoredProcedure, l_Parameters.ToArray());
 
@@ -50,7 +50,7 @@ namespace SkillsDashboard.BLO
             return l_skillCollection;
         }
 
-        public SubSkillCollection GetAllSubSkills(string argLoggedInUser, int argSkillID)
+        public SubSkillCollection GetAllSubSkills(int argLoggedInUser, int argSkillID)
         {
             #region Declarations
             SubSkillCollection l_SubSkillCollection = new SubSkillCollection();
@@ -62,7 +62,7 @@ namespace SkillsDashboard.BLO
             #endregion
             try
             {
-                l_Parameters.Add(l_SkillsDBManager.CreateParameter(ProcedureParams.LOGGEDINUSERID, argLoggedInUser, DbType.String));
+                l_Parameters.Add(l_SkillsDBManager.CreateParameter(ProcedureParams.LOGGEDINUSERID, argLoggedInUser, DbType.Int32));
                 l_Parameters.Add(l_SkillsDBManager.CreateParameter(ProcedureParams.SKILLID, argSkillID, DbType.Int32));
 
                 l_SubSkillDataTable = l_SkillsDBManager.GetDataTable(StoredProcedures.GET_ALLSUBSKILLS_FORASKILL, CommandType.StoredProcedure, l_Parameters.ToArray());

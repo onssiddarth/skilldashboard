@@ -17,7 +17,7 @@ namespace SkillsDashboard.API.Controllers
         //    return View();
         //}
 
-        public IHttpActionResult GetAllSkills(string argLoggedInUser)
+        public IHttpActionResult GetAllSkills(int argLoggedInUser)
         {
             #region Declarations
             SkillsBLO l_SkillsBLO = new SkillsBLO();
@@ -40,7 +40,7 @@ namespace SkillsDashboard.API.Controllers
             return Ok(l_SkillCollection);
         }
 
-        public IHttpActionResult GetAllSubSkills(string argLoggedInUser, int argSkillID)
+        public IHttpActionResult GetAllSubSkills(int argLoggedInUser, int argSkillID)
         {
             #region Declarations
             SkillsBLO l_SkillsBLO = new SkillsBLO();
