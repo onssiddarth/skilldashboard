@@ -1,0 +1,53 @@
+﻿
+@{
+    ViewBag.Title = "Query Resolution";
+}
+
+<h2>Query Resolution</h2>
+
+
+
+<div class="form-group">
+    <div class="row">
+        <div class="col-md-4">
+            <label for="ddl_skill">Select a skill *</label>
+            @Html.DropDownList("SkillList", ViewBag.SkillList as SelectList, "--Select--", new { @class = "form-control", @id = "ddl_skill", @onchange = "getSubskills()" })
+            <span id="skill-error" class="text-danger" style="display:none">Please select skill</span>
+        </div>
+
+        <div class="col-md-4">
+            <label for="ddl_subskill">Select a sub-skill *</label>
+            <select id="ddl_subskill" class="form-control"></select>
+            <span id="subskill-error" class="text-danger" style="display:none;">Please select subskill</span>
+        </div>
+
+    </div>
+    <br />
+    <div class="row">
+        <div class="col-md-2">
+            <button type="button" id="btn-Search" class="btn btn-success" onclick="GetResolvers()">Search</button>
+        </div>
+    </div>
+
+</div>
+    
+    
+
+
+
+
+
+
+<div id="div_QueryResults">
+
+</div>
+<script src="~/Scripts/DataTables/jquery.dataTables.min.js"></script>
+<link href="~/Content/DataTables/css/jquery.dataTables.min.css" rel="stylesheet" />
+
+<script type="text/javascript">
+    var URL = {};
+    URL["GetSubskills"] = "@Url.Action("GetSubskills", "Query")";
+    URL["GetQueryResults"] = "@Url.Action("GetQueryResults", "Query")";
+</script>
+<script src="~/Scripts/Query.js"></script>
+

@@ -1,0 +1,47 @@
+﻿
+
+
+@model SkillsDashboard.Models.PendingSkillExpertApprovalsCollection
+
+
+<table id="tbl_PendingSkillExpertApprovals">
+    <thead>
+        <tr>
+            <th>Request Type</th>
+            <th>Requested By</th>
+            <th>Status</th>
+            <th>Requested Date</th>
+            <th>Requestor Comments</th>
+            <th>Manager Comments</th>
+            <th>Skill Expert Comments</th>
+            <th>Skill</th>
+            <th>Subskill</th>
+            <th>Skill Points</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+            {
+            <tr id="@item.RequestCode-@item.UniqueID">
+                <td class="td_RequestType">@item.RequestType</td>
+                <td class="td_RequestedBy">@item.RequestedBy</td>
+                <td class="td_Status">@item.Status</td>
+                <td class="td_RequestedDate">@item.RequestedDate</td>
+                <td class="td_UserComments">@item.UserComments</td>
+                <td class="td_ManagerComments">@item.ManagerComments</td>
+                <td class="td_SkillExpertComments">@item.SkillExpertComments</td>
+                <td class="td_SkillName">@item.SkillName</td>
+                <td class="td_SubSkillName">@item.SubSkillName</td>
+                <td class="td_SkillPoints">@item.SkillPoints</td>
+                <td><input type="button" class="btn btn-primary" value="Take Action" onclick="OpenActionPopup('@item.RequestCode-@item.UniqueID')" /></td>
+
+                @Html.Hidden("FileGUID", item.FileGUID, new { @class = item.RequestCode+"-"+ item.UniqueID + "-file-GUID" })
+                @Html.Hidden("FileName", item.FileName, new { @class = item.RequestCode + "-" + item.UniqueID + "-file-Name" })
+                @Html.Hidden("Room", item.Room, new { @class = item.RequestCode + "-" + item.UniqueID + "-Room" })
+                @Html.Hidden("DemoSchedule", item.DemoSchedule, new { @class = item.RequestCode + "-" + item.UniqueID + "-DemoSchedule" })
+
+            </tr>
+        }
+    </tbody>
+</table>

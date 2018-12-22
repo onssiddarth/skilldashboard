@@ -1,0 +1,156 @@
+﻿
+@{
+    ViewBag.Title = "Pending Manager Approvals";
+}
+
+<h2>Pending Manager Approvals</h2>
+
+<div class="confirmation-message">
+
+</div>
+
+<div class="form-group">
+    <label for="ddl_skill">Select request type</label>
+    @Html.DropDownList("RequestList", ViewBag.RequestModeList as SelectList, "ALL", new { @class = "form-control", @id = "ddl_request" })
+</div>
+
+<div id="div_PendingManagerApprovalGrid">
+
+</div>
+
+<div class="modal" id="modal-approve-badge">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title">Approve/Reject Badge</h4>
+            </div>
+            <!-- Modal body -->
+            <div class="modal-body">
+                <div class="row" style="text-align:center;">
+                    <img src="#IMGSRC#" id="img_Badge"/>
+                </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label>Requested By: </label>
+                            <span id="lbl_BadgeRequestedBy"></span>
+                        </div>
+                        <div class="col-md-6">
+                            <label>Requested For: </label>
+                            <span id="lbl_BadgeRequestedFor"></span>
+                        </div>
+                    </div>
+
+                    
+                    <div class="row">
+                        <div class="col-md-12">
+                            <label>Requestor Comments: </label>
+                            <span id="lbl_RequestorComments"></span>
+                        </div>
+                    </div>
+                
+
+                
+                <div class="row form-group">
+                    <div class="col-md-12">
+                        <label>Please enter Comments:</label>
+                        <textarea class="form-control skill-badge-text-area" maxlength="250" onkeyup="removeBadgeValidation();"></textarea>
+                        <span id="lbl_BadgeCommentErrorMessage" class="text-danger" style="display:none;">Please enter comments</span>
+                    </div>
+                </div>
+
+
+            </div>
+
+            <!-- Modal footer -->
+            <div class="modal-footer">
+                <button type="button" id="btn-Approve-badge" class="btn btn-success" onclick="SaveBadge('APPROVED')">Approve</button>
+                <button type="button" id="btn-Reject-badge" class="btn btn-danger" onclick="SaveBadge('REJECTED')">Reject</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<div class="modal" id="modal-approve-request">
+    <div class="modal-dialog">
+            <div class="modal-content">
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h4 class="modal-title">Approve/Reject request</h4>
+                </div>
+                <!-- Modal body -->
+                <div class="modal-body">
+                    <fieldset class="skill-model-border">
+                        <legend class="skill-model-border">Requestor inputs</legend>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label>Requested By: </label>
+                                <span id="lbl_RequestedBy"></span>
+                            </div>
+                            <div class="col-md-6">
+                                <label>Skill: </label>
+                                <span id="lbl_Skill"></span>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label>Subskill: </label>
+                                <span id="lbl_Subskill"></span>
+                            </div>
+                            <div class="col-md-6">
+                                <label>Points: </label>
+                                <span id="lbl_Points"></span>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <label>Requestor Comments: </label>
+                                <span id="lbl_RequestorComments"></span>
+                            </div>
+                        </div>
+                    </fieldset>
+
+                    <fieldset class="skill-model-border" id="certificate-upload-details" style="display:none;">
+                        <legend class="skill-model-border">Certificate Uploaded</legend>
+                        <a href="#PATH#" target="_blank" download="" class="file-details"></a>
+                    </fieldset>
+                    <div class="row form-group">
+                        <div class="col-md-12">
+                            <label>Please enter Comments:</label>
+                            <textarea class="form-control skill-text-area" maxlength="250" onkeyup="removeValidation();"></textarea>
+                            <span id="lbl_CommentErrorMessage" class="text-danger" style="display:none;">Please enter comments</span>
+                        </div>
+                    </div>
+
+
+                </div>
+
+                <!-- Modal footer -->
+                <div class="modal-footer">
+                    <button type="button" id="btn-Approve" class="btn btn-success" onclick="SaveManagerAction('APPROVED')">Approve</button>
+                    <button type="button" id="btn-Reject" class="btn btn-danger" onclick="SaveManagerAction('REJECTED')">Reject</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                </div>
+        
+        </div>
+    </div>
+</div>
+
+<script src="~/Scripts/DataTables/jquery.dataTables.min.js"></script>
+<link href="~/Content/DataTables/css/jquery.dataTables.min.css" rel="stylesheet" />
+
+<script type="text/javascript">
+    var URL = {};
+    URL["GetPendingManagerApprovals"] = "@Url.Action("GetPendingManagerApprovals", "PendingManagerRequests")";
+    URL["SaveManagerApproval"] = "@Url.Action("SaveManagerApproval", "PendingManagerRequests")";
+    URL["SaveManagerApprovalForBadge"] = "@Url.Action("SaveManagerApprovalForBadge", "PendingManagerRequests")"
+</script>
+<script src="~/Scripts/Common.js"></script>
+<script src="~/Scripts/PendingManagerApprovals.js"></script>
+
+
+
+

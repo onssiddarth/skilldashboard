@@ -1,0 +1,29 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Track my skill Requests</h2>
+
+
+<div class="form-group">
+    <label for="ddl_skill">Select request type</label>
+    @Html.DropDownList("RequestList",ViewBag.RequestModeList as SelectList, "ALL", new { @class = "form-control", @id = "ddl_request" })
+</div>
+
+<div id="div_UserRequestGrid">
+
+</div>
+
+<script src="~/Scripts/DataTables/jquery.dataTables.min.js"></script>
+<link href="~/Content/DataTables/css/jquery.dataTables.min.css" rel="stylesheet" />
+<script type="text/javascript">
+    var URL = {};
+    URL["GetUserRequests"] = "@Url.Action("GetUserRequests", "UserRequests")";
+</script>
+<script src="~/Scripts/UserRequests.js"></script>
+
+
+
+
+

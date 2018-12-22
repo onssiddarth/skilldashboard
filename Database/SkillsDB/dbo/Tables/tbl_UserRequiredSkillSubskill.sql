@@ -8,6 +8,7 @@
     [CreatedBy]          INT      NULL,
     [ModifiedDate]       DATETIME NULL,
     [ModifiedBy]         INT      NULL,
+    [type] VARCHAR(20) NULL, 
     PRIMARY KEY CLUSTERED ([URSSID] ASC),
     FOREIGN KEY ([RequiredSkillID]) REFERENCES [dbo].[tbl_SkillMaster] ([SkillID]),
     FOREIGN KEY ([RequiredSubskillID]) REFERENCES [dbo].[tbl_SubskillMaster] ([SubskillID]),

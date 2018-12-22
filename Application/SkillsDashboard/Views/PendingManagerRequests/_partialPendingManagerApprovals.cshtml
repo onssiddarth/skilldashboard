@@ -1,0 +1,58 @@
+﻿
+
+@model SkillsDashboard.Models.PendingManagerApprovalCollection
+
+
+    <table id="tbl_PendingManagerApprovals">
+        <thead>
+            <tr>
+                <th>Request Type</th>
+                <th>Requested By</th>
+                <th>Status</th>
+                <th>Requested Date</th>
+                <th>Comments</th>
+                <th>Skill</th>
+                <th>Subskill</th>
+                <th>Skill Points</th>
+                <th>Badge Given For</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr id="@item.RequestCode-@item.UniqueID">
+                    <td class="td_RequestType">@item.RequestType</td>
+                    <td class="td_RequestedBy">@item.RequestedBy</td>
+                    <td class="td_Status">@item.Status</td>
+                    <td class="td_RequestedDate">@item.RequestedDate</td>
+                    <td class="td_Comments">@item.Comments</td>
+                    @if (item.RequestCode == "BADGE")
+                    {
+                        <td class="td_SkillName">NA</td>
+                        <td class="td_SubSkillName">NA</td>
+                        <td class="td_SkillPoints">NA</td>
+                        <td class="td_BadgeGivenFor">@item.BadgeGivenFor</td>
+                    }
+                    else
+                    {
+                        <td class="td_SkillName">@item.SkillName</td>
+                        <td class="td_SubSkillName">@item.SubSkillName</td>
+                        <td class="td_SkillPoints">@item.SkillPoints</td>
+                        <td class="td_BadgeGivenFor">NA</td>
+                    }
+                    
+                    <td><input type="button" class="btn btn-primary" value="Take Action" onclick="OpenActionPopup('@item.RequestCode-@item.UniqueID','@item.RequestCode')"/></td>
+
+                    @Html.Hidden("FileGUID", item.FileGUID,new { @class= item.RequestCode + "-" + item.UniqueID + "-file-GUID" })
+                    @Html.Hidden("FileName", item.FileName, new { @class = item.RequestCode + "-" + item.UniqueID + "-file-Name" })
+
+                    @Html.Hidden("BadgeID", item.BadgeID, new { @class = item.RequestCode + "-" + item.UniqueID + "-badge-ID" })
+                    @Html.Hidden("BadgeName", item.BadgeName, new { @class = item.RequestCode + "-" + item.UniqueID + "-badge-Name" })
+                    @Html.Hidden("BadgeURL", item.BadgeImageURL, new { @class = item.RequestCode + "-" + item.UniqueID + "-badge-URL" })
+                    
+                </tr>
+            }
+        </tbody>
+    </table>
+

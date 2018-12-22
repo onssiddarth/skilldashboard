@@ -1,0 +1,32 @@
+﻿
+@model SkillsDashboard.Models.UserRequestsCollection
+
+
+<table id="tbl_UserRequests">
+<thead>
+    <tr>
+        <th>Requested Date</th>
+        <th>Request Type</th>
+        <th>Skill</th>
+        <th>Sub-skill</th>
+        <th>Badge Given For</th>
+        <th>Status</th>
+        <th>Comments</th>
+    </tr>
+</thead>
+<tbody>
+    @foreach (var item in Model)
+    {
+    <tr>
+        <td>@item.RequestedDate</td>
+        <td>@item.RequestType</td>
+        <td>@item.Skill</td>
+        <td>@item.SubSkill</td>
+        <td>@item.BadgeGivenFor</td>
+        <td>@item.Status</td>
+        <td>@item.Comments</td>
+    </tr>
+    }
+</tbody>
+</table>
+

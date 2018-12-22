@@ -1,0 +1,27 @@
+﻿
+
+@model SkillsDashboard.Models.QueryCollection
+
+
+<table id="tbl_GetQueryResults">
+<thead>
+    <tr>
+        <th>Employer Name</th>
+        <th>Email</th>
+        <th>Contact Number</th>
+        <th>Skill points</th>
+    </tr>
+</thead>
+<tbody>
+    @foreach (var item in Model)
+    {
+    <tr>
+        <td>@item.Name</td>
+        <td>@item.Email</td>
+        <td>@item.ContactNumber</td>
+        <td>@item.SkillPoints</td>
+    </tr>
+    }
+</tbody>
+</table>
+

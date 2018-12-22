@@ -112,6 +112,19 @@
     <Folder Include="dbo\Tables\" />
     <Folder Include="dbo\Stored Procedures\" />
     <Folder Include="Scripts" />
+    <Folder Include="Scripts\V1.0.0.0" />
+    <Folder Include="dbo\Functions" />
+    <Folder Include="Scripts\V2.0.0.0" />
+    <Folder Include="Scripts\V3.0.0.0" />
+    <Folder Include="Scripts\V4.0.0.0" />
+    <Folder Include="Scripts\V5.0.0.0" />
+    <Folder Include="Scripts\V6.0.0.0" />
+    <Folder Include="Scripts\V7.0.0.0" />
+    <Folder Include="Scripts\V8.0.0.0" />
+    <Folder Include="Scripts\V9.0.0.0" />
+    <Folder Include="Scripts\V10.0.0.0" />
+    <Folder Include="Scripts\V11.0.0.0" />
+    <Folder Include="Scripts\V12.0.0.0" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="dbo\Tables\AspNetRoles.sql">
@@ -222,5 +235,44 @@
       <AnsiNulls>On</AnsiNulls>
       <QuotedIdentifier>On</QuotedIdentifier>
     </Build>
+    <Build Include="dbo\Tables\tbl_UserInitialSkillRequestHistory.sql" />
+    <Build Include="dbo\Tables\Tbl_VersionMaster.sql" />
+    <Build Include="dbo\Stored Procedures\usp_sav_EmployeeInitialRequest.sql" />
+    <Build Include="dbo\Functions\fn_GetStatusIDFromCode.sql" />
+    <Build Include="dbo\Stored Procedures\usp_sav_ImproveSkills.sql" />
+    <Build Include="dbo\Tables\Tbl_FileUploads.sql" />
+    <Build Include="dbo\Stored Procedures\usp_getEmployeeRequests.sql" />
+    <Build Include="dbo\Stored Procedures\usp_getPendingManagerApprovals.sql" />
+    <Build Include="dbo\Stored Procedures\usp_savManagerApprovals.sql" />
+    <Build Include="dbo\Stored Procedures\usp_sav_DemoScheduleBySkillExpert.sql" />
+    <Build Include="dbo\Stored Procedures\usp_getPendingSkillExpertApprovals.sql" />
+    <Build Include="dbo\Stored Procedures\usp_savSkillExpertApprovals.sql" />
+    <Build Include="dbo\Stored Procedures\usp_getAllBadges.sql" />
+    <Build Include="dbo\Stored Procedures\usp_savBadge.sql" />
+    <Build Include="dbo\Stored Procedures\usp_savApproveBadge.sql" />
+    <Build Include="dbo\Stored Procedures\usp_getAllUsersByName.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Scripts\V1.0.0.0\DDL.sql" />
+    <None Include="Scripts\V1.0.0.0\DML.sql" />
+    <None Include="Scripts\V1.0.0.0\Static.sql" />
+    <None Include="Scripts\V2.0.0.0\DML.sql" />
+    <None Include="Scripts\V3.0.0.0\DDL.sql" />
+    <None Include="Scripts\V3.0.0.0\DML.sql" />
+    <None Include="Scripts\V4.0.0.0\DDL.sql" />
+    <None Include="Scripts\V4.0.0.0\DML.sql" />
+    <None Include="Scripts\V5.0.0.0\DML.sql" />
+    <None Include="Scripts\V6.0.0.0\DDL.sql" />
+    <None Include="Scripts\V6.0.0.0\DML.sql" />
+    <None Include="Scripts\V7.0.0.0\DML.sql" />
+    <None Include="Scripts\V8.0.0.0\DML.sql" />
+    <None Include="Scripts\V9.0.0.0\DML.sql" />
+    <None Include="Scripts\V9.0.0.0\Static.sql" />
+    <None Include="Scripts\V10.0.0.0\DDL.sql" />
+    <None Include="Scripts\V10.0.0.0\DML.sql" />
+    <None Include="Scripts\V11.0.0.0\DDL.sql" />
+    <None Include="Scripts\V11.0.0.0\DML.sql" />
+    <None Include="Scripts\V11.0.0.0\Static.sql" />
+    <None Include="Scripts\V12.0.0.0\DML.sql" />
   </ItemGroup>
 </Project>

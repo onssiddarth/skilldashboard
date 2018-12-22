@@ -10,7 +10,7 @@
     [CreatedBy]           INT           NULL,
     [ModifiedDate]        DATETIME      NULL,
     [ModifiedBy]          INT           NULL,
-    PRIMARY KEY CLUSTERED ([UISRID] ASC),
+    CONSTRAINT [PK__UserIntialHistory] PRIMARY KEY  CLUSTERED ([UISRHistoryID] ASC),
     FOREIGN KEY ([UISRID]) REFERENCES [dbo].[tbl_UserInitialSkillRequest] ([UISRID])
 );
 

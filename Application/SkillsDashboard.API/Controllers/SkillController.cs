@@ -9,19 +9,15 @@ using SkillsDashboard.BLO;
 
 namespace SkillsDashboard.API.Controllers
 {
+    [Route("api/Skills")]
     public class SkillController : ApiController
     {
-        // GET: Skill
-        //public ActionResult Index()
-        //{
-        //    return View();
-        //}
-
+        [Route("GetAllSkills")]
         public IHttpActionResult GetAllSkills(int argLoggedInUser)
         {
             #region Declarations
-            SkillsBLO l_SkillsBLO = new SkillsBLO();
-            SkillCollection l_SkillCollection = new SkillCollection();
+            SkillBLO l_SkillsBLO = new SkillBLO();
+            SkillsBECollection l_SkillCollection = new SkillsBECollection();
             #endregion
             try
             {
@@ -34,17 +30,18 @@ namespace SkillsDashboard.API.Controllers
             }
             catch (Exception ex)
             {
-                throw;
+                throw ex;
             }
 
             return Ok(l_SkillCollection);
         }
 
+        [Route("GetAllSubSkills")]
         public IHttpActionResult GetAllSubSkills(int argLoggedInUser, int argSkillID)
         {
             #region Declarations
-            SkillsBLO l_SkillsBLO = new SkillsBLO();
-            SubSkillCollection l_SubSkillCollection = new SubSkillCollection();
+            SkillBLO l_SkillsBLO = new SkillBLO();
+            SubSkillBECollection l_SubSkillCollection = new SubSkillBECollection();
             #endregion
             try
             {
@@ -57,10 +54,48 @@ namespace SkillsDashboard.API.Controllers
             }
             catch (Exception ex)
             {
-                throw;
+                throw ex;
             }
 
             return Ok(l_SubSkillCollection);
+        }
+
+        [Route("CreateInitialSkillRequest")]
+        [HttpPost]
+        public IHttpActionResult CreateInitialSkillRequest(string argLoggedInUser, [FromBody]UserInitialSkillRequestBE argInitialRequest)
+        {
+            #region Declarations
+            SkillBLO l_SkillBLO = new SkillBLO();
+            #endregion
+            try
+            {
+                l_SkillBLO.CreateInitialRequest(argInitialRequest, argLoggedInUser);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+            return Ok();
+        }
+
+        [Route("ImproveSkills")]
+        [HttpPost]
+        public IHttpActionResult ImproveSkills(string argLoggedInUser, [FromBody]ImproveSkillsBE argImproveSkills)
+        {
+            #region Declarations
+            SkillBLO l_SkillBLO = new SkillBLO();
+            #endregion
+            try
+            {
+                l_SkillBLO.ImproveSkills(argImproveSkills, argLoggedInUser);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+            return Ok();
         }
     }
 }

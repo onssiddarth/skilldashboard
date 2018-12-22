@@ -10,6 +10,7 @@
     [CreatedBy]    INT      NULL,
     [ModifiedDate] DATETIME NULL,
     [ModifiedBy]   INT      NULL,
+    [Comments] VARCHAR(250) NOT NULL, 
     PRIMARY KEY CLUSTERED ([UBHID] ASC),
     FOREIGN KEY ([BadgeID]) REFERENCES [dbo].[tbl_BadgeMaster] ([BadgeID]),
     FOREIGN KEY ([StatusID]) REFERENCES [dbo].[tbl_Status] ([StatusID]),

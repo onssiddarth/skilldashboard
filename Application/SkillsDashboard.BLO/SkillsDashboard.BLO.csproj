@@ -78,11 +78,16 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BadgeBLO.cs" />
+    <Compile Include="ManagerActionablesBLO.cs" />
     <Compile Include="ProcedureParams.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SkillsBLO.cs" />
+    <Compile Include="QueryBLO.cs" />
+    <Compile Include="SkillBLO.cs" />
+    <Compile Include="SkillExpertActionableBLO.cs" />
     <Compile Include="StoredProcedures.cs" />
     <Compile Include="TestUserBLO.cs" />
+    <Compile Include="UserRequestsBLO.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SkillsDashboard.BusinessEntities\SkillsDashboard.BusinessEntities.csproj">

@@ -1,0 +1,28 @@
+﻿
+@model SkillsDashboard.Models.UserInitialSkillRequest
+
+@if (Model != null && Model.SubskillCollection != null && Model.SubskillCollection.Count > 0)
+{
+    for (int i = 0; i < Model.SubskillCollection.Count; i++)
+    {
+        <div class="form-check form-check-inline col-md-2">
+
+            @Html.CheckBoxFor(m=>m.SubskillCollection[i].IsSelected, new {@class= "form-check-input" })
+            @Html.LabelFor(m=>m.SubskillCollection[i].SubSkillName,Model.SubskillCollection[i].SubSkillName, new { @class = "form-check-label" })
+
+            @Html.HiddenFor(m=>m.SubskillCollection[i].SubSkillID)
+            @Html.HiddenFor(m => m.SubskillCollection[i].SubSkillName)
+            @Html.HiddenFor(m => m.SubskillCollection[i].SkillID)
+        </div>
+    }
+}
+else
+{
+    <div class="alert alert-info col-md-4">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        No subskills available for this skill
+    </div>
+}
+
+
+

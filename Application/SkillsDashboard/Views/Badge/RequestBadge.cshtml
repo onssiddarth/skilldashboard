@@ -1,0 +1,59 @@
+﻿@model SkillsDashboard.Models.SaveBadge
+@{
+    ViewBag.Title = "Request Badge";
+}
+
+<h2>Request Badge</h2>
+
+<script src="~/Scripts/jquery-ui-1.12.1.min.js"></script>
+<link href="~/Content/themes/base/jquery-ui.min.css" rel="stylesheet" />
+
+@if (ViewBag.SuccessMessage != null)
+{
+    <div class="alert alert-success">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        @ViewBag.SuccessMessage
+    </div>
+}
+
+@using (Html.BeginForm())
+{
+
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <div class="form-group">
+        <img src="~/Images/@Model.BadgeImageURL" title="@Model.BadgeName" />
+        @Html.HiddenFor(m => m.BadgeID)
+        @Html.HiddenFor(m => m.BadgeName)
+        @Html.HiddenFor(m => m.Type)
+    </div>
+
+    <div class="form-group">
+        <label for="txt_comments">Select badge recepient *</label>
+        @Html.TextBoxFor(m => m.BadgeGivenToName, new { @id = "txt_BadgeGivenToName", @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.BadgeGivenToName, "", new { @class = "text-danger" })
+        @Html.HiddenFor(m => m.BadgeGivenTo, new { @id = "hdn_BadgeGivenTo" })
+    </div>
+
+    <div class="form-group">
+        <label for="txt_comments">Comments *</label>
+        @Html.TextAreaFor(m => m.Comments, new { @id = "txt_comments", @rows = "2", @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Comments, "", new { @class = "text-danger" })
+    </div>
+
+    <div class="form-group">
+        <button class="btn btn-primary" type="submit" formaction="@Url.Action("SaveUserBadge","Badge",new { argRequestType = "USER" })">Submit</button>
+    </div>
+
+}
+
+@section Scripts{
+    @Scripts.Render("~/bundles/jqueryval")
+}
+<script type="text/javascript">
+    var URL = {};
+    URL["GetEmployeesByName"] = '@Url.Action("GetEmployeesByName", "Badge")';
+</script>
+<script src="~/Scripts/Badge.js"></script>
+

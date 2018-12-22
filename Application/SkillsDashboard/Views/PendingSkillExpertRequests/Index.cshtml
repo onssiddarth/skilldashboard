@@ -1,0 +1,207 @@
+﻿@{
+    ViewBag.Title = "Pending Skill Expert Approvals";
+}
+
+<h2>Pending Skill Expert Approvals</h2>
+
+<script src="~/Scripts/moment.min.js"></script>
+<script src="~/Scripts/bootstrap-datetimepicker.min.js"></script>
+<link href="~/Content/bootstrap-datetimepicker.min.css" rel="stylesheet" />
+
+<div class="confirmation-message">
+
+</div>
+
+<div class="form-group">
+    <label for="ddl_skill">Select request type</label>
+    @Html.DropDownList("RequestList", ViewBag.RequestModeList as SelectList, "ALL", new { @class = "form-control", @id = "ddl_request" })
+</div>
+
+<div id="div_PendingSkillExpertApprovalGrid">
+
+</div>
+
+<div class="modal" id="modal-schedule-demo" data-backdrop="static">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title">Schedule Demo</h4>
+            </div>
+            <!-- Modal body -->
+            <div class="modal-body skills-modal-height">
+                <fieldset class="skill-model-border">
+                    <legend class="skill-model-border">Requestor/ Manager inputs</legend>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label>Requested By: </label>
+                            <span id="lbl_RequestedBy"></span>
+                        </div>
+                        <div class="col-md-6">
+                            <label>Skill: </label>
+                            <span id="lbl_Skill"></span>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label>Subskill: </label>
+                            <span id="lbl_Subskill"></span>
+                        </div>
+                        <div class="col-md-6">
+                            <label>Points: </label>
+                            <span id="lbl_Points"></span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label>Requestor Comments: </label>
+                            <span id="lbl_RequestorComments"></span>
+                        </div>
+                        <div class="col-md-6">
+                            <label>Manager Comments: </label>
+                            <span id="lbl_ManagerComments"></span>
+                        </div>
+                    </div>
+                </fieldset>
+
+                <div class="row form-group">
+                    <div class="col-md-6">
+                        <label>Room *:</label>
+                        <input type="text" id="text_room" class="form-control" maxlength="25" onkeyup="removeValidationFromRoomText();"/>
+                        <span id="lbl_CommentRoomError" class="text-danger skill-error" style="display:none;">Please enter room</span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class='col-sm-6'>
+                        <div class="form-group">
+                            <label>Schedule *:</label>
+                            <div class='input-group date' id='datetimepicker'>
+                                <input type='text' class="form-control" id="text_schedule"/>
+                                <span class="input-group-addon">
+                                    <span class="glyphicon glyphicon-calendar"></span>
+                                </span>
+                            </div>
+                            <span id="lbl_CommentScheduleError" class="text-danger skill-error row" style="display:none;">Please select schedule</span>
+                        </div>
+                    </div>
+                    </div>
+                        <div class="row form-group">
+                            <div class="col-md-12">
+                                <label>Please enter Comments *:</label>
+                                <textarea class="form-control skill-text-area" id="txt-demo" maxlength="250" onkeyup="removeValidationForScheduleDemo();"></textarea>
+                                <span id="lbl_DemoScheduleErrorMessage" class="text-danger skill-error" style="display:none;">Please enter comments</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Modal footer -->
+                    <div class="modal-footer">
+                        <button type="button" id="btn-Approve" class="btn btn-success" onclick="ScheduleDemo()">Schedule</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                    </div>
+                </div>
+            </div>
+</div>
+
+<div class="modal" id="modal-skillexpert-approve-request">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title">Approve/Reject request</h4>
+            </div>
+            <!-- Modal body -->
+            <div class="modal-body skills-modal-height">
+                <fieldset class="skill-model-border">
+                    <legend class="skill-model-border">Requestor/ Manager inputs</legend>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label>Requested By: </label>
+                            <span id="lbl_ActionableRequestedBy"></span>
+                        </div>
+                        <div class="col-md-6">
+                            <label>Skill: </label>
+                            <span id="lbl_ActionableSkill"></span>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label>Subskill: </label>
+                            <span id="lbl_ActionableSubskill"></span>
+                        </div>
+                        <div class="col-md-6">
+                            <label>Points: </label>
+                            <span id="lbl_ActionablePoints"></span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label>Requestor Comments: </label>
+                            <span id="lbl_ActionableRequestorComments"></span>
+                        </div>
+                        <div class="col-md-6">
+                            <label>Manager Comments: </label>
+                            <span id="lbl_ActionableManagerComments"></span>
+                        </div>
+                    </div>
+                </fieldset>
+
+                <fieldset class="skill-model-border" id="actionable-certificate-upload-details" style="display:none;">
+                    <legend class="skill-model-border">Certificate Uploaded</legend>
+                    <a href="#PATH#" target="_blank" download="" class="action-file-details"></a>
+                </fieldset>
+
+                <fieldset class="skill-model-border" id="actionable-demo-details" style="display:none;">
+                    <legend class="skill-model-border">Demo Details</legend>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label>Demo Schedule: </label>
+                            <span id="lbl_DemoSchedule"></span>
+                        </div>
+                        <div class="col-md-6">
+                            <label>Room: </label>
+                            <span id="lbl_Room"></span>
+                        </div>
+                    </div>
+                </fieldset>
+
+                <div class="row form-group">
+                    <div class="col-md-12">
+                        <label>Please enter Comments:</label>
+                        <textarea class="form-control skill-text-area" id="actionable-skilltext-area" maxlength="250" onkeyup="removeValidationApproveReject();"></textarea>
+                        <span id="lbl_ActionableCommentErrorMessage" class="text-danger" style="display:none;">Please enter comments</span>
+                    </div>
+                </div>
+
+
+            </div>
+
+            <!-- Modal footer -->
+            <div class="modal-footer">
+                <button type="button" id="btn-Approve" class="btn btn-success" onclick="SaveSkillExpertAction('APPROVED')">Approve</button>
+                <button type="button" id="btn-Reject" class="btn btn-danger" onclick="SaveSkillExpertAction('REJECTED')">Reject</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<script src="~/Scripts/DataTables/jquery.dataTables.min.js"></script>
+<link href="~/Content/DataTables/css/jquery.dataTables.min.css" rel="stylesheet" />
+
+
+
+
+
+<script type="text/javascript">
+    var URL = {};
+    URL["GetPendingSkillExpertApprovals"] = "@Url.Action("GetPendingSkillExpertApprovals", "PendingSkillExpertRequests")";
+    URL["ScheduleDemo"] = "@Url.Action("ScheduleDemo", "PendingSkillExpertRequests")";
+    URL["SaveSkillExpertApproval"] = "@Url.Action("SaveSkillExpertApproval", "PendingSkillExpertRequests")";
+
+</script>
+<script src="~/Scripts/Common.js"></script>
+<script src="~/Scripts/PendingSkillExpertApprovals.js"></script>

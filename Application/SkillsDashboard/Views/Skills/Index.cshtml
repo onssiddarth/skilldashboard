@@ -1,0 +1,88 @@
+﻿@model SkillsDashboard.Models.UserInitialSkillRequest
+
+@{
+    ViewBag.Title = "Add Primary Skill";
+}
+
+<h2>Select Primary Skill</h2>
+
+@if (ViewBag.SkillErrorMessage != null)
+{
+    <div class="alert alert-danger">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        @ViewBag.SkillErrorMessage
+    </div>
+}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    //Dropdownn for skill
+    <div class="form-group">
+        <label for="ddl_skill">Select a skill *</label>
+        @Html.DropDownListFor(m => m.UserSkill.SkillID, ViewBag.SkillList as SelectList, "--Select--", new { @class = "form-control", @id = "ddl_skill" })
+        @Html.ValidationMessageFor(m => m.UserSkill.SkillID, "", new {@class="text-danger" })
+    </div>
+
+    //Subskills
+    <div class="form-group" id="div_subskillWrapper" style="display:none;">
+        <label>Select subskill(s) *</label>
+        <div id="div_subskills">
+
+        </div>
+    </div>
+    <br />
+
+    @*Textbox for comments*@
+    <div class="form-group">
+        <label for="txt_comments">Comments *</label>
+        @Html.TextAreaFor(m=>m.Comments,new {@id= "txt_comments",@rows="2",@class="form-control"})
+        @Html.ValidationMessageFor(m => m.Comments,"", new { @class = "text-danger" })
+    </div>
+
+    <div class="form-group">
+        <button class="btn btn-primary" type="submit" formaction="@Url.Action("SaveIntialSkillRequest","Skills")">Submit</button>
+    </div>
+}
+
+@section Scripts{
+@Scripts.Render("~/bundles/jqueryval")    
+}
+<script src="~/Scripts/InitialRequest.js"></script>
+<script type="text/javascript">
+    var URL = {};
+    URL["GetSubskills"] = "@Url.Action("GetSubskills", "Skills")";
+    
+    var subSkillErrorMessage = '@ViewBag.SkillErrorMessage';
+
+    if (subSkillErrorMessage && subSkillErrorMessage != null) {
+        selectSubskill();
+    }
+
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+
+
+
+
+
+

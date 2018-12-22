@@ -28,6 +28,13 @@ G:\DISS\Project\SourceCode\SkillsDashboard\bin\Microsoft.Owin.Security.Twitter.d
 G:\DISS\Project\SourceCode\SkillsDashboard\bin\Microsoft.Web.Infrastructure.dll
 G:\DISS\Project\SourceCode\SkillsDashboard\bin\Newtonsoft.Json.dll
 G:\DISS\Project\SourceCode\SkillsDashboard\bin\Owin.dll
+G:\DISS\Project\SourceCode\SkillsDashboard\bin\SkillsDashboard.BusinessEntities.dll
+G:\DISS\Project\SourceCode\SkillsDashboard\bin\SkillsDashboard.Utilities.dll
+G:\DISS\Project\SourceCode\SkillsDashboard\bin\System.Net.Http.dll
+G:\DISS\Project\SourceCode\SkillsDashboard\bin\System.Net.Http.Extensions.dll
+G:\DISS\Project\SourceCode\SkillsDashboard\bin\System.Net.Http.Formatting.dll
+G:\DISS\Project\SourceCode\SkillsDashboard\bin\System.Net.Http.Primitives.dll
+G:\DISS\Project\SourceCode\SkillsDashboard\bin\System.Net.Http.WebRequest.dll
 G:\DISS\Project\SourceCode\SkillsDashboard\bin\System.Web.Helpers.dll
 G:\DISS\Project\SourceCode\SkillsDashboard\bin\System.Web.Mvc.dll
 G:\DISS\Project\SourceCode\SkillsDashboard\bin\System.Web.Optimization.dll
@@ -36,6 +43,10 @@ G:\DISS\Project\SourceCode\SkillsDashboard\bin\System.Web.WebPages.Deployment.dl
 G:\DISS\Project\SourceCode\SkillsDashboard\bin\System.Web.WebPages.dll
 G:\DISS\Project\SourceCode\SkillsDashboard\bin\System.Web.WebPages.Razor.dll
 G:\DISS\Project\SourceCode\SkillsDashboard\bin\WebGrease.dll
+G:\DISS\Project\SourceCode\SkillsDashboard\bin\SkillsDashboard.BusinessEntities.pdb
+G:\DISS\Project\SourceCode\SkillsDashboard\bin\SkillsDashboard.BusinessEntities.dll.config
+G:\DISS\Project\SourceCode\SkillsDashboard\bin\SkillsDashboard.Utilities.pdb
+G:\DISS\Project\SourceCode\SkillsDashboard\bin\SkillsDashboard.Utilities.dll.config
 G:\DISS\Project\SourceCode\SkillsDashboard\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
 G:\DISS\Project\SourceCode\SkillsDashboard\bin\System.Web.Helpers.xml
 G:\DISS\Project\SourceCode\SkillsDashboard\bin\System.Web.Mvc.xml
@@ -70,11 +81,3 @@ G:\DISS\Project\SourceCode\SkillsDashboard\obj\Debug\SkillsDashboard.Web.csproj.
 G:\DISS\Project\SourceCode\SkillsDashboard\obj\Debug\SkillsDashboard.Web.csproj.CopyComplete
 G:\DISS\Project\SourceCode\SkillsDashboard\obj\Debug\SkillsDashboard.dll
 G:\DISS\Project\SourceCode\SkillsDashboard\obj\Debug\SkillsDashboard.pdb
-G:\DISS\Project\SourceCode\SkillsDashboard\bin\SkillsDashboard.BusinessEntities.dll
-G:\DISS\Project\SourceCode\SkillsDashboard\bin\System.Net.Http.dll
-G:\DISS\Project\SourceCode\SkillsDashboard\bin\System.Net.Http.Extensions.dll
-G:\DISS\Project\SourceCode\SkillsDashboard\bin\System.Net.Http.Formatting.dll
-G:\DISS\Project\SourceCode\SkillsDashboard\bin\System.Net.Http.Primitives.dll
-G:\DISS\Project\SourceCode\SkillsDashboard\bin\System.Net.Http.WebRequest.dll
-G:\DISS\Project\SourceCode\SkillsDashboard\bin\SkillsDashboard.BusinessEntities.pdb
-G:\DISS\Project\SourceCode\SkillsDashboard\bin\SkillsDashboard.BusinessEntities.dll.config

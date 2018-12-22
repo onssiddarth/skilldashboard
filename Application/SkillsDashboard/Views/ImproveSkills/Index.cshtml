@@ -1,0 +1,83 @@
+﻿@model SkillsDashboard.Models.ImproveSkills
+
+@{
+    ViewBag.Title = "Improve Skills";
+}
+
+
+<h2>Improve skills</h2>
+
+@if (ViewBag.SkillErrorMessage != null)
+{
+    <div class="alert alert-danger">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        @ViewBag.SkillErrorMessage
+    </div>
+}
+
+@using (Html.BeginForm("SendForApproval", "ImproveSkills", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    //Dropdown for skills
+    <div class="form-group">
+        <label for="ddl_skill">Select a skill *</label>
+        @Html.DropDownListFor(m => m.UserSkill.SkillID, ViewBag.SkillList as SelectList, "--Select--", new { @class = "form-control", @id = "ddl_skill" })
+        @Html.ValidationMessageFor(m => m.UserSkill.SkillID, "", new { @class = "text-danger" })
+    </div>
+
+    //Area for skills
+    <div class="form-group" id="div_subskillWrapper" style="display:none;">
+        <label>Select subskill(s) *</label>
+        <div id="div_subskills">
+
+        </div>
+    </div>
+    <br />
+
+    //Dropdown for mode
+    <div class="form-group">
+        <label for="ddl_skill">Select a mode*</label>
+        @Html.DropDownListFor(m => m.Mode, ViewBag.RequestModeList as SelectList, "--Select--", new { @class = "form-control", @id = "ddl_mode" })
+        @Html.ValidationMessageFor(m => m.Mode, "", new { @class = "text-danger" })
+    </div>
+
+
+    @*Textbox for comments*@
+    <div class="form-group">
+        <label for="txt_comments">Comments *</label>
+        @Html.TextAreaFor(m => m.Comments, new { @id = "txt_comments", @rows = "2", @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Comments, "", new { @class = "text-danger" })
+    </div>
+
+    //File Upload
+    <div class="form-group file-upload">
+        <label for="txt_comments">File</label>
+        @Html.TextBoxFor(m => m.File, new { type = "file", @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.File, "", new { @class = "text-danger" })
+    </div>
+
+    <div class="form-group">
+        <button class="btn btn-primary" type="submit">Submit</button>
+    </div>
+
+}
+
+@section Scripts{
+@Scripts.Render("~/bundles/jqueryval")
+}
+<script src="~/Scripts/ImproveSkills.js"></script>
+<script type="text/javascript">
+    var URL = {};
+    URL["GetSubskills"] = "@Url.Action("GetSubskills", "ImproveSkills")";
+
+    var subSkillErrorMessage = '@ViewBag.ShowSubskills';
+
+    if (subSkillErrorMessage && subSkillErrorMessage != null) {
+        selectSubskill();
+    }
+</script>
+
+
+
