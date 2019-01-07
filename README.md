@@ -23,5 +23,9 @@ After you execute the GenerateDBSchema.sql which will generate the Database and 
 * Highcharts
 * Log4Net
 
+## Additional Resources/References
+Below video presents a conceptual framework of the skill-based system with regards to its need, features and benefits.
+https://www.youtube.com/watch?v=Lps_VeNJIy4
+
 ## Author
 Siddarth Nair
