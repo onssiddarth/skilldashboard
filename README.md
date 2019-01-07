@@ -10,7 +10,7 @@ You can download the whole source code in your local folder. Execute the *Genera
 * SkillDashboard.Web
 * SkillDashboard.API
 
-Run the application in Visual Studio by pressing F5. You must see 2 instances of localhost: one for the Web API and other is the web application. Kindly replace the value of the portnumber of the below APIBaseURL key present in SkillDashboard.Web project's web.config:
+Run the application in Visual Studio by pressing F5. You must see 2 instances of localhost: one for the Web API and other is the web application. Kindly replace the value of the portnumber of the below *APIBaseURL* key present in *SkillDashboard.Web* project's *web.config*:
 `<add key="APIBaseURL" value="http://localhost:30482" />`
 
 
