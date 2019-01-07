@@ -1,5 +1,5 @@
 # Employee Skill Dashboard
-This is a prof-of-concept web application demonstrating a skill-based system for better employee engagement in a software organization.
+This is a proof-of-concept web application demonstrating a skill-based system for better employee engagement in a software organization.
 
 ## Prerequisites
 * .NET framework 4.6
