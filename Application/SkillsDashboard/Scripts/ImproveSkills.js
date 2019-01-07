@@ -9,6 +9,7 @@ function registerEvents() {
     $("#ddl_skill").on("change", selectSubskill); //change event for skills dropdown
 }
 
+//Show/Hide file upload control on the basis of request Type
 function SetVisibilityOfFileUpload() {
     var modeSelected = $("#ddl_mode").val();
 
@@ -26,6 +27,8 @@ function selectSubskill() {
     var skill = $("#ddl_skill").val();
     var parameters = { 'argSkillID': skill };
 
+    $(".skill-dashboard-loader").show();
+
     $.ajax({
         type: "POST",
         url: URL["GetSubskills"],
@@ -33,9 +36,11 @@ function selectSubskill() {
         success: function (response) {
             $("#div_subskills").html(response);
             $("#div_subskillWrapper").show();
+            $(".skill-dashboard-loader").hide();
         },
         error: function (response) {
-            console.log("Some error in application!");
+            displayConfirmationMessage('Subskills could not be loaded', 'alert-danger');
+            $(".skill-dashboard-loader").hide();
         }
 
     })

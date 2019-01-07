@@ -19,6 +19,10 @@ namespace SkillsDashboard.Models
         public bool IsSelected { get; set; }
 
         public bool IsActive { get; set; }
+
+        public string SubSkillType { get; set; }
+
+        public string SkillName { get; set; }
     }
 
     public class SubSkillCollection : List<Subskills>

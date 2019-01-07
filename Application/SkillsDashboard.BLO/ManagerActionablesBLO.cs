@@ -10,6 +10,12 @@ namespace SkillsDashboard.BLO
 {
     public class ManagerActionablesBLO
     {
+        /// <summary>
+        /// Get the list of pending manager approvals
+        /// </summary>
+        /// <param name="argLoggedInUser">Logged in user ID</param>
+        /// <param name="argType">Request Type</param>
+        /// <returns></returns>
         public PendingManagerApprovalsBECollection GetPendingManagerApprovals(int argLoggedInUser, string argType)
         {
             #region Declarations
@@ -77,6 +83,12 @@ namespace SkillsDashboard.BLO
             return l_requestCollection;
         }
 
+        /// <summary>
+        /// Used to save manager action (APPROVE/REJECT)
+        /// </summary>
+        /// <param name="argLoggedInUser">Logged in user ID</param>
+        /// <param name="argManagerApprovalBE">Manager approval details</param>
+        /// <returns></returns>
         public void SaveManagerApprovals(int argLoggedInUser, ManagerApprovalBE argManagerApproval)
         {
             #region Declarations

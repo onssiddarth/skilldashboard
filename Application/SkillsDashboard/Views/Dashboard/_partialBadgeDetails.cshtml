@@ -1,0 +1,69 @@
+﻿@model SkillsDashboard.Models.Dashboard
+
+@if(Model!=null && Model.BadgeCollection!=null && Model.BadgeCollection.Count > 0)
+{
+
+    <div class="col-md-4">
+        <div class="skill-dashboard-container animated pulse">
+            <div class="skill-dashboard-icon">
+
+                <img src="~/Images/@Model.BadgeCollection[0].BadgeURL" class="skill-dashboard-badge-image" />
+            </div>
+            <div class="skill-dashboard-body">
+                <span class="skill-dashboard-count">@Model.BadgeCollection[0].BadgeCount</span>
+                <span class="skill-dashboard-title">Skill Expert Badges</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="skill-dashboard-container user-badge animated pulse">
+            <div class="user-badge-icon">
+                <img src="~/Images/@Model.BadgeCollection[1].BadgeURL" class="skill-dashboard-badge-image" />
+            </div>
+            <div class="skill-dashboard-body">
+                <span class="skill-dashboard-count">@Model.BadgeCollection[1].BadgeCount</span>
+                <span class="skill-dashboard-title">Query Badges</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        @if (Model.DisplayActionItems == true)
+        {
+            if (Model.InitialSkillExists)
+            {
+                <a href="@Url.Action("Index","ImproveSkills")" target="_blank">
+                    <div class="skill-dashboard-container improve-skills animated pulse">
+                        <div class="improve-skills-icon">
+                            <i class="glyphicon glyphicon-star"></i>
+                        </div>
+                        <div class="skill-dashboard-body">
+                            <span class="skill-dashboard-count">&nbsp;</span>
+                            <span class="skill-dashboard-title">Improve Skills</span>
+                        </div>
+
+                    </div>
+                </a>
+            }
+            else
+            {
+                <a href="@Url.Action("Index","Skills")" target="_blank">
+                    <div class="skill-dashboard-container improve-skills animated pulse">
+                        <div class="improve-skills-icon">
+                            <i class="glyphicon glyphicon-star"></i>
+                        </div>
+                        <div class="skill-dashboard-body">
+                            <span class="skill-dashboard-count">&nbsp;</span>
+                            <span class="skill-dashboard-title">Add Primary Skills</span>
+                        </div>
+                    </div>
+                </a>
+            }
+        }
+      </div>
+  }
+
+
+
+

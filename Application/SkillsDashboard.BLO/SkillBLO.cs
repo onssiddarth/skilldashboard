@@ -11,6 +11,11 @@ namespace SkillsDashboard.BLO
 {
     public class SkillBLO
     {
+        /// <summary>
+        /// Used to fetch all skills in system
+        /// </summary>
+        /// <param name="argLoggedInUser">Logged in User ID</param>
+        /// <returns></returns>
         public SkillsBECollection GetAllSkills(int argLoggedInUser)
         {
             #region Declarations
@@ -51,6 +56,12 @@ namespace SkillsDashboard.BLO
             return l_skillCollection;
         }
 
+        /// <summary>
+        /// Used to fetch all subskills for a skill
+        /// </summary>
+        /// <param name="argLoggedInUser">Logged in UserID</param>
+        /// <param name="argSkillID">SkillID</param>
+        /// <returns></returns>
         public SubSkillBECollection GetAllSubSkills(int argLoggedInUser, int argSkillID)
         {
             #region Declarations
@@ -93,6 +104,12 @@ namespace SkillsDashboard.BLO
             return l_SubSkillCollection;
         }
 
+        /// <summary>
+        /// Used to save the initial skill request (primary skills)
+        /// </summary>
+        /// <param name="argLoggedInUser">Logged in User ID</param>
+        /// <param name="argInitialRequest">Request Details</param>
+        /// <returns></returns>
         public void CreateInitialRequest(UserInitialSkillRequestBE argSkillRequest, string argLoggedInUser)
         {
             #region Declarations
@@ -149,6 +166,12 @@ namespace SkillsDashboard.BLO
             return l_skillXML;
         }
 
+        /// <summary>
+        /// Used to save skills & subskills created using Improve Skills option
+        /// </summary>
+        /// <param name="argLoggedInUser">Logged in user</param>
+        /// <param name="argImproveSkills">Skill and Subskill details</param>
+        /// <returns></returns>
         public void ImproveSkills(ImproveSkillsBE argImproveSkills, string argLoggedInUser)
         {
             #region Declarations

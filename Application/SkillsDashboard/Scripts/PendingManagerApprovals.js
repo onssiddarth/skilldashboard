@@ -6,19 +6,24 @@ $(document).ready(function () {
     initialiseDataTable();
 });
 
+//Function used to register click/change events in page
 function registerEvents() {
     $("#ddl_request").on("change", loadApprovals);
 }
 
+//Initialise datatable for grid
 function initialiseDataTable() {
     $('#tbl_PendingManagerApprovals').DataTable({
         responsive: true
     });
 }
 
+//AJAX call to load pending manager approvals
 function loadApprovals() {
     var requestType = $("#ddl_request").val();
     var parameters = { 'argRequestType': requestType };
+
+    $(".skill-dashboard-loader").show();
 
     $.ajax({
         type: "POST",
@@ -27,12 +32,12 @@ function loadApprovals() {
         success: function (response) {
             $("#div_PendingManagerApprovalGrid").html(response);
             initialiseDataTable();
+            $(".skill-dashboard-loader").hide();
         },
         error: function (response) {
-            console.log(response);
-            console.log("Some error in application!");
+            displayConfirmationMessage('Approvals could not be loaded successfully', 'alert-danger'); 
+            $(".skill-dashboard-loader").hide();
         }
-
     })
 }
 
@@ -93,6 +98,7 @@ function OpenActionPopup(argID,argType) {
     
 }
 
+//AJAX POST requests to save manager action
 function SaveManagerAction(argType) {
     
     //Check if valid contents are entered in text area
@@ -105,7 +111,7 @@ function SaveManagerAction(argType) {
     else {
         $("#lbl_CommentErrorMessage").hide();
     }
-
+    $(".skill-dashboard-loader").show();
     //get the type 
     requestType = GetRequestType(UniqueID);
 
@@ -139,15 +145,18 @@ function SaveManagerAction(argType) {
                 //Display error message
                 displayConfirmationMessage('Request could not be updated successfully', 'alert-danger');
             }
+
+            $(".skill-dashboard-loader").hide();
         },
         error: function (a, b, c) {
             $("#modal-approve-request").modal('hide');
-            displayConfirmationMessage('Request could not be updated successfully', 'alert-danger');
+            $(".skill-dashboard-loader").hide();
+            displayConfirmationMessage('Request could not be updated successfully', 'alert-danger');  
         }
     });  
 }
 
-
+//Open Popup for badge
 function openBadgeModel(argID) {
     //Hide the error message every time the popup opens
     $("#lbl_BadgeCommentErrorMessage").hide();
@@ -170,6 +179,7 @@ function openBadgeModel(argID) {
     $("#modal-approve-badge").modal('show');
 }
 
+//AJAX call to save badge details
 function SaveBadge(argType) {
     var commentsEntered = $(".skill-badge-text-area").val();
     if (!commentsEntered || commentsEntered.trim().length < 1) {
@@ -179,7 +189,7 @@ function SaveBadge(argType) {
     else {
         $("#lbl_BadgeCommentErrorMessage").hide();
     }
-
+    $(".skill-dashboard-loader").show();
     //Create approval object
     var argSaveBadge = new Object();
     argSaveBadge.UserBadgeID = UniqueID.split('-')[1];
@@ -209,14 +219,17 @@ function SaveBadge(argType) {
                 //Display error message
                 displayConfirmationMessage('Request could not be updated successfully', 'alert-danger');
             }
+            $(".skill-dashboard-loader").hide();
         },
         error: function (a, b, c) {
             $("#modal-approve-badge").modal('hide');
+            $(".skill-dashboard-loader").hide();
             displayConfirmationMessage('Request could not be updated successfully', 'alert-danger');
         }
     });  
 }
 
+//OnKeyup event to remove validation message once details are entered in textbox
 function removeBadgeValidation() {
     var commentsEntered = $(".skill-badge-text-area").val();
     if (!commentsEntered || commentsEntered.trim().length < 1) {

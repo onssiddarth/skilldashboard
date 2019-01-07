@@ -10,6 +10,12 @@ namespace SkillsDashboard.BLO
 {
     public class UserRequestsBLO
     {
+        /// <summary>
+        /// Used to get the list of requests made by user along with their status
+        /// </summary>
+        /// <param name="argLoggedInUser">Logged in User ID</param>
+        /// <param name="argType">Request Type</param>
+        /// <returns></returns>
         public UserRequestsBECollection GetUserSkillRequests(int argLoggedInUser, string argType)
         {
             #region Declarations

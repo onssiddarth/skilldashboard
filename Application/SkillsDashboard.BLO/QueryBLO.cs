@@ -10,6 +10,13 @@ namespace SkillsDashboard.BLO
 {
     public class QueryBLO
     {
+        /// <summary>
+        /// Used to get list of experts with required skills and subskills
+        /// </summary>
+        /// <param name="argLoggedInUser">Logged in User ID</param>
+        /// <param name="argSkillID">Skill ID</param>
+        /// <param name="argSubSkillID">SubSkill ID</param>
+        /// <returns></returns>
         public QueryBECollection GetEmployeesBasedOnSkillAndSubskill(int argLoggedInUser, int argSkillID, int argSubSkillID)
         {
             #region Declarations

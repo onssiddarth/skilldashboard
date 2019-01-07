@@ -6,11 +6,26 @@ using System.Web.Mvc;
 
 namespace SkillsDashboard.Controllers
 {
-    public class HomeController : Controller
+    public class HomeController : SkillsDashboardBaseController
     {
+        /// <summary>
+        /// Default route which will redirect user to login page or dashboard on the basis of login status
+        /// </summary>
+        /// <returns></returns>
         public ActionResult Index()
         {
-            return View();
+            //Get Logged in User ID
+            int l_LoggedInUserID = GetLoggedInUserID();
+
+            //If logged in user ID is not set redirect to login page else dashboard page
+            if(l_LoggedInUserID == 0)
+            {
+                return RedirectToAction("Login", "Account");
+            }
+            else
+            {
+                return RedirectToAction("Index", "Dashboard");
+            }
         }
     }
 }

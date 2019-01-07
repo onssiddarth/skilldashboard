@@ -15,38 +15,22 @@ using SkillsDashboard.Interfaces;
 using SkillsDashboard.Utilities;
 using SkillsDashboard.Models;
 using static SkillsDashboard.Utilities.SkillConstants;
+using log4net;
 
 namespace SkillsDashboard.Controllers
 {
     public class SkillsDashboardBaseController : Controller,ISkill
     {
-
+        #region Page Level declarations
         HttpClient client;
         string apiBaseURL = ConfigurationManager.AppSettings["APIBaseURL"];
+        private static log4net.ILog Log { get; set; }
+        #endregion
 
         #region Private variables
         private const string C_QUERYABLE_PARAM = "i";
         private const string C_SORT_ORDER_DESC = "DESC";
         #endregion
-
-        
-        protected IList<T> Sort<T>(IList<T> argData, string argFieldName, string argSortOrder)
-        {
-            return this.Sort(argData.AsQueryable<T>(), argFieldName, argSortOrder).ToList<T>();
-        }
-
-        protected IQueryable<T> Sort<T>(IQueryable<T> argData, string argFieldName, string argSortOrder)
-        {
-            if (string.IsNullOrEmpty(argFieldName) || string.IsNullOrEmpty(argSortOrder))
-                return argData;
-            var l_Param = Expression.Parameter(typeof(T), C_QUERYABLE_PARAM);
-            Expression l_Conversion = Expression.Convert(Expression.Property(l_Param, argFieldName), typeof(object));
-
-            var l_SortExpression = Expression.Lambda<Func<T, object>>(l_Conversion, l_Param);
-
-            return argSortOrder == C_SORT_ORDER_DESC ? argData.OrderByDescending(l_SortExpression) : argData.OrderBy(l_SortExpression);
-
-        }
 
         /// <summary>
         /// This method is used to initialize HTTP Client
@@ -58,8 +42,6 @@ namespace SkillsDashboard.Controllers
             client.DefaultRequestHeaders.Accept.Clear();
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
         }
-
-
 
         /// <summary>
         /// This method is used to get logged in user ID
@@ -81,7 +63,7 @@ namespace SkillsDashboard.Controllers
         }
 
         /// <summary>
-        /// This method is used to get all skills
+        /// This is a genetic method used to get all skills
         /// </summary>
         /// <returns></returns>
         public async Task<SkillsBECollection> GetAllSkills()
@@ -113,6 +95,11 @@ namespace SkillsDashboard.Controllers
             return l_SkillsBECollection;
         }
 
+        /// <summary>
+        /// This is a generic method to get subskills for a skill
+        /// </summary>
+        /// <param name="argSkillID"></param>
+        /// <returns></returns>
         public async Task<SubSkillBECollection> GetSubskillsForSkill(int argSkillID)
         {
             #region Declarations
@@ -174,6 +161,11 @@ namespace SkillsDashboard.Controllers
             return l_SubskillCollection;
         }
 
+        /// <summary>
+        /// This is a generic method used to get request Types to be populated in dropdown
+        /// </summary>
+        /// <param name="argIncludeBadge"></param>
+        /// <returns></returns>
         protected IEnumerable<object> GetRequestTypes(bool argIncludeBadge = false)
         {
             IEnumerable<object> l_result = null;
@@ -200,6 +192,11 @@ namespace SkillsDashboard.Controllers
             return l_result;
         }
 
+        /// <summary>
+        /// Generic method to get request names based on type
+        /// </summary>
+        /// <param name="argRequestType"></param>
+        /// <returns></returns>
         private string GetNameForRequestType(string argRequestType)
         {
             string l_RequestName = string.Empty;
@@ -229,6 +226,34 @@ namespace SkillsDashboard.Controllers
             }
 
             return l_RequestName;
+        }
+
+        /// <summary>
+        /// This method overrides onException to log the error in file using Log4Net and redirect user to custom error page
+        /// </summary>
+        /// <param name="argFilterContext">Filter context</param>
+        protected override void OnException(ExceptionContext argFilterContext)
+        {
+            //Get controller name
+            string l_controller = argFilterContext.RouteData.Values["controller"].ToString();
+
+            //get action name
+            string l_action = argFilterContext.RouteData.Values["action"].ToString();
+
+            //Get logger name
+            string l_loggerName = string.Format("{0}Controller.{1}", l_controller, l_action);
+
+            //Log the error
+            log4net.LogManager.GetLogger(l_loggerName).Error(string.Empty, argFilterContext.Exception);
+
+            //Set Excetionhandled as true
+            argFilterContext.ExceptionHandled = true;
+
+            //Redirect to error page
+            argFilterContext.Result = new ViewResult
+            {
+                ViewName = "~/Views/Shared/Error.cshtml"
+            };
         }
     }
 }

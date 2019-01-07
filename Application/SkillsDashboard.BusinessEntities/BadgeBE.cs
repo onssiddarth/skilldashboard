@@ -12,6 +12,8 @@ namespace SkillsDashboard.BusinessEntities
         public string BadgeName { get; set; }
 
         public string BadgeURL { get; set; }
+
+        public int BadgeCount { get; set; }
     }
 
     public class BadgeBECollection:List<BadgeBE>

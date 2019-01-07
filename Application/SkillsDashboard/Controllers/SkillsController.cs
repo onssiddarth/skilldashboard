@@ -14,6 +14,7 @@ using SkillsDashboard.Utilities;
 
 namespace SkillsDashboard.Controllers
 {
+    [Authorize]
     public class SkillsController : SkillsDashboardBaseController
     {
         #region Page level declarations
@@ -29,6 +30,10 @@ namespace SkillsDashboard.Controllers
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
         }
 
+        /// <summary>
+        /// Main Action Result method to load primary skills page
+        /// </summary>
+        /// <returns></returns>
         public async Task<ActionResult> Index()
         {
             #region Declarations
@@ -51,7 +56,9 @@ namespace SkillsDashboard.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> SaveIntialSkillRequest(UserInitialSkillRequest argSkillRequest)
         {
+            #region Declarations
             HttpResponseMessage l_Message = new HttpResponseMessage();
+            #endregion
             if(ModelState.IsValid)
             {
                 if(argSkillRequest!=null && argSkillRequest.SubskillCollection!=null && argSkillRequest.SubskillCollection.Count > 0 && argSkillRequest.SubskillCollection.Exists(x=>x.IsSelected == true))
@@ -80,7 +87,7 @@ namespace SkillsDashboard.Controllers
         }
 
         /// <summary>
-        /// Save Initial skill requests to DB
+        /// API call to save Initial skill requests 
         /// </summary>
         /// <param name="argSkillRequest"></param>
         /// <returns></returns>

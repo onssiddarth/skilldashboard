@@ -13,6 +13,7 @@ using System.Web.Mvc;
 
 namespace SkillsDashboard.Controllers
 {
+    [Authorize(Roles = "MANAGER")]
     public class PendingManagerRequestsController : SkillsDashboardBaseController
     {
         #region Page level declarations
@@ -28,12 +29,19 @@ namespace SkillsDashboard.Controllers
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
         }
 
+        /// <summary>
+        /// Action Result method to load main view for Manager approvals page
+        /// </summary>
+        /// <returns></returns>
         public ActionResult Index()
         {
             PopulateDropdownValues();
             return View();
         }
 
+        /// <summary>
+        /// Method to populate request type dropdown
+        /// </summary>
         private void PopulateDropdownValues()
         {
             try
@@ -48,6 +56,11 @@ namespace SkillsDashboard.Controllers
             }
         }
 
+        /// <summary>
+        /// API call to fetch pending manager approvals 
+        /// </summary>
+        /// <param name="argRequestType">Request Type</param>
+        /// <returns></returns>
         [HttpPost]
         public async Task<ActionResult> GetPendingManagerApprovals(string argRequestType)
         {
@@ -72,6 +85,11 @@ namespace SkillsDashboard.Controllers
             return PartialView("_partialPendingManagerApprovals", l_ApprovalCollection);
         }
 
+        /// <summary>
+        /// Method to convert ManagerApproval business entity to model
+        /// </summary>
+        /// <param name="argApprovalsBECollection"></param>
+        /// <returns></returns>
         private PendingManagerApprovalCollection ConverMendingManagerApprovalsToModel(PendingManagerApprovalsBECollection argApprovalsBECollection)
         {
             #region Declarations
@@ -140,7 +158,6 @@ namespace SkillsDashboard.Controllers
             return Json(IsSuccess, JsonRequestBehavior.AllowGet);
         }
 
-
         /// <summary>
         /// This method is used to cal WebAPI to save manager approval
         /// </summary>
@@ -197,6 +214,11 @@ namespace SkillsDashboard.Controllers
             return l_ManagerApprovalBE;
         }
 
+        /// <summary>
+        /// HTTP POST method to save manager action (approve/reject) for badge
+        /// </summary>
+        /// <param name="argSaveBadge"></param>
+        /// <returns></returns>
         [HttpPost]
         public async Task<JsonResult> SaveManagerApprovalForBadge(SaveBadge argSaveBadge)
         {
@@ -216,6 +238,11 @@ namespace SkillsDashboard.Controllers
             return Json(IsSuccess, JsonRequestBehavior.AllowGet);
         }
 
+        /// <summary>
+        /// API call to save badge details
+        /// </summary>
+        /// <param name="argSaveBadge">Badge Model</param>
+        /// <returns></returns>
         private async Task<HttpResponseMessage> SaveBadgeResponseToDatabase(SaveBadge argSaveBadge)
         {
             #region Declarations
@@ -241,6 +268,11 @@ namespace SkillsDashboard.Controllers
             return l_Response;
         }
 
+        /// <summary>
+        /// Method to convert badge details model to business entity
+        /// </summary>
+        /// <param name="argSaveBadge"></param>
+        /// <returns></returns>
         private SaveBadgeBE ConvertManagerApprovalBadgeToBE(SaveBadge argSaveBadge)
         {
             SaveBadgeBE l_SaveBadgeBE = new SaveBadgeBE();

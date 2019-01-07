@@ -12,7 +12,9 @@ function selectSubskill() {
 
     var skill = $("#ddl_skill").val();
     var parameters = { 'argSkillID': skill };
-    
+
+    $(".skill-dashboard-loader").show();
+
     $.ajax({
         type: "POST",
         url: URL["GetSubskills"],
@@ -20,9 +22,11 @@ function selectSubskill() {
         success: function (response) {
             $("#div_subskills").html(response);
             $("#div_subskillWrapper").show();
+            $(".skill-dashboard-loader").hide();
         },
         error: function (response) {
-            console.log("Some error in application!");
+            displayConfirmationMessage('Subskills could not be loaded', 'alert-danger'); 
+            $(".skill-dashboard-loader").hide();
         }
 
     })

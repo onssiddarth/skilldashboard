@@ -9,9 +9,17 @@ using System.Web.Http;
 
 namespace SkillsDashboard.API.Controllers
 {
+    /// <summary>
+    /// API used in "Track Requests" page
+    /// </summary>
     public class UserRequestsController : ApiController
     {
-
+        /// <summary>
+        /// This API is used to get the list of requests made by user along with their status
+        /// </summary>
+        /// <param name="argLoggedInUser">Logged in User ID</param>
+        /// <param name="argType">Request Type</param>
+        /// <returns></returns>
         [Route("GetUserRequests")]
         public IHttpActionResult GetUserRequests(int argLoggedInUser,string argType)
         {

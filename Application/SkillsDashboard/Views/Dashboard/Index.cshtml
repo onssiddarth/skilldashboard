@@ -1,15 +1,54 @@
-﻿
-@{
+﻿@{
     ViewBag.Title = "Index";
 }
+<script src="~/Scripts/jquery-ui-1.12.1.min.js"></script>
+<link href="~/Content/themes/base/jquery-ui.min.css" rel="stylesheet" />
+<script src="~/Scripts/Highcharts-4.0.1/js/highcharts.js"></script>
+
+<div class="skill-dashboard-header">
+    <div class="form-group">
+        <input type="button" class="btn btn-primary skills-dashboard-employee-search" id="btn_LoadEmployeeDetails" value="Search" />
+
+        <input type="text" class="form-control pull-left" id="txt_SearchEmployee"/>
+        <span id="lbl_UserTextError" class="text-danger" style="display:none;">Please select user</span>
+        
+    </div>
+</div>
 
 <h2>Dashboard</h2>
 
-@if(ViewBag.SuccessMessage!=null)
+<input type="hidden" id="hdn_SearchDashboardFor"/>
+
+@if (ViewBag.SuccessMessage != null)
 {
     <div class="alert alert-success">
         <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
         Request has been submitted successfully
     </div>
 }
+
+<div id="div_dashboardDetails">
+    
+</div>
+
+@Html.Partial("_partialLoader")
+
+<script type="text/javascript">
+
+    var URL = {};
+    URL["GetDashboardDetailsForUser"] = '@Url.Action("GetDashboardDetailsForUser","Dashboard")';
+    URL["GetEmployeesByName"] = '@Url.Action("GetEmployeesByName", "Badge")';
+    var UserID = '@ViewBag.UserID';
+
+</script>
+<script src="~/Scripts/Dashboard.js"></script>
+
+
+
+
+
+
+
+
+
 

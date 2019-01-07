@@ -10,6 +10,12 @@ namespace SkillsDashboard.BLO
 {
     public class BadgeBLO
     {
+        /// <summary>
+        /// Get list of users on the basis of name prefix
+        /// </summary>
+        /// <param name="argLoggedInUser">Logged in user ID</param>
+        /// <param name="argNamePrefix">Name prefix for search</param>
+        /// <returns></returns>
         public UserDetailsBECollection GetUsersByName(int argLoggedInUser, string argNamePrefix)
         {
             #region Declarations
@@ -50,6 +56,12 @@ namespace SkillsDashboard.BLO
             return l_UserDetailsBECollection;
         }
 
+        /// <summary>
+        /// Get badge details in system
+        /// </summary>
+        /// <param name="argLoggedInUser">Logged in user ID</param>
+        /// <param name="argBadgeType">Badge Type</param>
+        /// <returns></returns>
         public BadgeBECollection GetBadges(int argLoggedInUser, string argBadgeType)
         {
             #region Declarations
@@ -100,6 +112,12 @@ namespace SkillsDashboard.BLO
             return l_BadgeBECollection;
         }
 
+        /// <summary>
+        /// Save badge given by user
+        /// </summary>
+        /// <param name="argLoggedInUser">Logged in user ID</param>
+        /// <param name="argSaveBadgeBE">Badge Details to save</param>
+        /// <returns></returns>
         public void SaveBadgeForUser(int argLoggedInUser, SaveBadgeBE argSaveBadgeBE)
         {
             #region Declarations
@@ -128,6 +146,12 @@ namespace SkillsDashboard.BLO
             }
         }
 
+        /// <summary>
+        /// Modify the badge status by manager
+        /// </summary>
+        /// <param name="argLoggedInUser">Logged in user ID</param>
+        /// <param name="argSaveBadgeBE">Badge Details</param>
+        /// <returns></returns>
         public void ApproveBadge(int argLoggedInUser, SaveBadgeBE argSaveBadgeBE)
         {
             #region Declarations

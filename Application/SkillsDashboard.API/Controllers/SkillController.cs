@@ -9,9 +9,16 @@ using SkillsDashboard.BLO;
 
 namespace SkillsDashboard.API.Controllers
 {
-    [Route("api/Skills")]
+    /// <summary>
+    /// API's for primary skills and improve skills screen
+    /// </summary>
     public class SkillController : ApiController
     {
+        /// <summary>
+        /// This API is used to fetch all skills in system
+        /// </summary>
+        /// <param name="argLoggedInUser">Logged in User ID</param>
+        /// <returns></returns>
         [Route("GetAllSkills")]
         public IHttpActionResult GetAllSkills(int argLoggedInUser)
         {
@@ -36,6 +43,12 @@ namespace SkillsDashboard.API.Controllers
             return Ok(l_SkillCollection);
         }
 
+        /// <summary>
+        /// This API is used to fetch all subskills for a skill
+        /// </summary>
+        /// <param name="argLoggedInUser">Logged in UserID</param>
+        /// <param name="argSkillID">SkillID</param>
+        /// <returns></returns>
         [Route("GetAllSubSkills")]
         public IHttpActionResult GetAllSubSkills(int argLoggedInUser, int argSkillID)
         {
@@ -60,6 +73,12 @@ namespace SkillsDashboard.API.Controllers
             return Ok(l_SubSkillCollection);
         }
 
+        /// <summary>
+        /// This API is used to save the initial skill request (primary skills)
+        /// </summary>
+        /// <param name="argLoggedInUser">Logged in User ID</param>
+        /// <param name="argInitialRequest">Request Details</param>
+        /// <returns></returns>
         [Route("CreateInitialSkillRequest")]
         [HttpPost]
         public IHttpActionResult CreateInitialSkillRequest(string argLoggedInUser, [FromBody]UserInitialSkillRequestBE argInitialRequest)
@@ -79,6 +98,12 @@ namespace SkillsDashboard.API.Controllers
             return Ok();
         }
 
+        /// <summary>
+        /// This API is used to save skills & subskills created using Improve Skills option
+        /// </summary>
+        /// <param name="argLoggedInUser">Logged in user</param>
+        /// <param name="argImproveSkills">Skill and Subskill details</param>
+        /// <returns></returns>
         [Route("ImproveSkills")]
         [HttpPost]
         public IHttpActionResult ImproveSkills(string argLoggedInUser, [FromBody]ImproveSkillsBE argImproveSkills)

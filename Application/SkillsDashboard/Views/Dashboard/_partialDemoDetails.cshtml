@@ -1,0 +1,35 @@
+﻿@model SkillsDashboard.Models.Dashboard
+
+<div class="col-md-4">
+    <div class="skills-event-container">
+        <div class="skills-event-header">
+            <span class="skill-event-title">Event Notifications</span>
+        </div>
+
+        <div class="skill-event-container-body">
+
+            @if (Model != null && Model.ScheduleDemoCollection != null && Model.ScheduleDemoCollection.Count > 0)
+            {
+                <ul class="skill-notification-list">
+                    @foreach (var demoDetails in Model.ScheduleDemoCollection)
+                    {
+                        <li><a class="skill-notification-title" href="">Skill: @demoDetails.SkillName (@demoDetails.SubSkillName)</a><p>Demo on @demoDetails.SubSkillName (@demoDetails.SkillName) by @demoDetails.EventConductedBy on @demoDetails.DemoSchedule at @demoDetails.Room</p></li>
+                    }
+                </ul>
+            }
+            else
+            {
+                <p>No Demo Scheduled</p>
+            }
+
+        </div>
+    </div>
+</div>
+<script src="~/Scripts/jquery.easy-ticker.min.js"></script>
+<script type="text/javascript">
+    $('.skill-event-container-body').easyTicker({
+        direction: 'up'
+    });
+</script>
+
+

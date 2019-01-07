@@ -9,8 +9,17 @@ using System.Web.Http;
 
 namespace SkillsDashboard.API.Controllers
 {
+    /// <summary>
+    /// API's for skill expert approval page
+    /// </summary>
     public class SkillExpertActionController : ApiController
     {
+        /// <summary>
+        /// This API is used to get list of pending approvals for skill expert
+        /// </summary>
+        /// <param name="argLoggedInUser">Logged in User ID</param>
+        /// <param name="argType">Request Type</param>
+        /// <returns></returns>
         [Route("GetSkillExpertApprovals")]
         public IHttpActionResult GetSkillExpertApprovals(int argLoggedInUser, string argType)
         {
@@ -35,6 +44,12 @@ namespace SkillsDashboard.API.Controllers
             return Ok(l_PendingSkillExpertApprovalBECollection);
         }
 
+        /// <summary>
+        /// This API is used to save skill expert action (APPROVE/REJECT)
+        /// </summary>
+        /// <param name="argLoggedInUser">Logged in user ID</param>
+        /// <param name="argSkillExpertApprovalBE">Skill expert approval details</param>
+        /// <returns></returns>
         [Route("SaveSkillExpertActionable")]
         public IHttpActionResult SaveSkillExpertActionable(int argLoggedInUser, [FromBody]SkillExpertApprovalBE argSkillExpertApprovalBE)
         {
@@ -53,6 +68,12 @@ namespace SkillsDashboard.API.Controllers
             return Ok();
         }
 
+        /// <summary>
+        /// This API is used to save Schedule Demo by skill expert
+        /// </summary>
+        /// <param name="argLoggedInUser">Logged in user ID</param>
+        /// <param name="argScheduleDemoBE">Demo details</param>
+        /// <returns></returns>
         [Route("ScheduleDemo")]
         public IHttpActionResult ScheduleDemo(int argLoggedInUser, [FromBody]ScheduleDemoBE argScheduleDemoBE)
         {

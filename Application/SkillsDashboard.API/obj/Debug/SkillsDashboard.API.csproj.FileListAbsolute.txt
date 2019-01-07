@@ -56,3 +56,4 @@ G:\DISS\Project\SourceCode\SkillsDashboard.API\obj\Debug\SkillsDashboard.API.csp
 G:\DISS\Project\SourceCode\SkillsDashboard.API\obj\Debug\SkillsDashboard.API.csproj.CopyComplete
 G:\DISS\Project\SourceCode\SkillsDashboard.API\obj\Debug\SkillsDashboard.API.dll
 G:\DISS\Project\SourceCode\SkillsDashboard.API\obj\Debug\SkillsDashboard.API.pdb
+G:\DISS\Project\SourceCode\SkillsDashboard.API\bin\SkillsDashboard.API.xml

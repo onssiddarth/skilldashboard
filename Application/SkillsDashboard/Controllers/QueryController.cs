@@ -14,6 +14,7 @@ using SkillsDashboard.Utilities;
 
 namespace SkillsDashboard.Controllers
 {
+    [Authorize]
     public class QueryController : SkillsDashboardBaseController
     {
         #region Page level declarations
@@ -29,6 +30,10 @@ namespace SkillsDashboard.Controllers
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
         }
 
+        /// <summary>
+        /// Load main view for Find Expert for query resolution
+        /// </summary>
+        /// <returns></returns>
         public async Task<ActionResult> Index()
         {
             #region Declarations
@@ -41,6 +46,11 @@ namespace SkillsDashboard.Controllers
             return View("Query", l_Query);
         }
 
+        /// <summary>
+        /// HTTP POST method to get subskill details for a skill selected
+        /// </summary>
+        /// <param name="argSkillID">Skill ID</param>
+        /// <returns></returns>
         [HttpPost]
         public async Task<JsonResult> GetSubskills(int argSkillID)
         {
@@ -59,6 +69,12 @@ namespace SkillsDashboard.Controllers
             return Json(l_SubskillCollection, JsonRequestBehavior.AllowGet);
         }
 
+        /// <summary>
+        /// API call to load list of experts 
+        /// </summary>
+        /// <param name="argSkillID"></param>
+        /// <param name="argSubSkillID"></param>
+        /// <returns></returns>
         [HttpPost]
         public async Task<ActionResult> GetQueryResults(int argSkillID, int argSubSkillID)
         {
@@ -83,10 +99,17 @@ namespace SkillsDashboard.Controllers
             return PartialView("_partialGetQueryResults", l_QueryCollection);
         }
 
+        /// <summary>
+        /// Convert query collection business entity collection to model
+        /// </summary>
+        /// <param name="argQueryBECollection">Query business entity collection</param>
+        /// <returns></returns>
         private QueryCollection ConvertUserRequestsToModel(QueryBECollection argQueryBECollection)
         {
+            #region Declarations
             QueryCollection l_QueryCollection = new QueryCollection();
             Query l_Query;
+            #endregion
             try
             {
                 if (argQueryBECollection != null && argQueryBECollection.Count > 0)

@@ -24,5 +24,7 @@ namespace SkillsDashboard.BLO
         public const string GET_ALLBADGES = "usp_getAllBadges";
         public const string SAVE_USERBADGE = "usp_savBadge";
         public const string SAVE_APPROVEBADGE = "usp_savApproveBadge";
+        public const string GET_DASHBOARDDETAILS = "usp_getDashboardDetails";
+        public const string SAV_SYNCUSERREQUIREDPOINTS = "usp_syncEmployeeRequiredPoints";
     }
 }

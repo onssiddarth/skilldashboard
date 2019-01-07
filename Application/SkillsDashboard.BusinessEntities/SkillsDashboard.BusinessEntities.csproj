@@ -81,6 +81,7 @@
     <Compile Include="BadgeBE.cs" />
     <Compile Include="BadgeMaster.cs" />
     <Compile Include="BaseBusinessEntity.cs" />
+    <Compile Include="DashboardBE.cs" />
     <Compile Include="ImproveSkillsBE.cs" />
     <Compile Include="ManagerApprovalBE.cs" />
     <Compile Include="PendingManagerApprovalsBE.cs" />

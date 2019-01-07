@@ -14,6 +14,7 @@ using static SkillsDashboard.Utilities.SkillConstants;
 
 namespace SkillsDashboard.Controllers
 {
+    [Authorize]
     public class UserRequestsController : SkillsDashboardBaseController
     {
         #region Page level declarations
@@ -29,12 +30,19 @@ namespace SkillsDashboard.Controllers
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
         }
 
+        /// <summary>
+        /// Main view to load Track Requests page
+        /// </summary>
+        /// <returns></returns>
         public ActionResult Index()
         {
             PopulateDropdownValues();
             return View();
         }
 
+        /// <summary>
+        /// This method is used to populate dropdown values for request Type
+        /// </summary>
         private void PopulateDropdownValues()
         {
             try
@@ -49,8 +57,11 @@ namespace SkillsDashboard.Controllers
             }
         }
 
-        
-
+        /// <summary>
+        /// API call to get user requests
+        /// </summary>
+        /// <param name="argRequestType">Request Type</param>
+        /// <returns></returns>
         [HttpPost]
         public async Task<ActionResult> GetUserRequests(string argRequestType)
         {
@@ -61,7 +72,6 @@ namespace SkillsDashboard.Controllers
             string l_skillsURL = string.Empty;
             #endregion
 
-            
             l_skillsURL = apiBaseURL + "/GetUserRequests?argLoggedInUser=" + GetLoggedInUserID() + "&argType=" + argRequestType + "";
             HttpResponseMessage l_SkillsData = await client.GetAsync(l_skillsURL);
 
@@ -75,6 +85,11 @@ namespace SkillsDashboard.Controllers
             return PartialView("_partialGetUserRequests", l_UserRequestsCollection);
         }
 
+        /// <summary>
+        /// Method to convert UserRequests business entity to Model
+        /// </summary>
+        /// <param name="argUserRequestsBECollection">UserRequests Business Entity</param>
+        /// <returns></returns>
         private UserRequestsCollection ConvertUserRequestsToModel(UserRequestsBECollection argUserRequestsBECollection)
         {
             UserRequestsCollection l_UserRequestsCollection = new UserRequestsCollection();

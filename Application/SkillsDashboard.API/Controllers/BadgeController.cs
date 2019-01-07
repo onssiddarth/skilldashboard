@@ -9,8 +9,17 @@ using System.Web.Http;
 
 namespace SkillsDashboard.API.Controllers
 {
+    /// <summary>
+    /// Badge related API's
+    /// </summary>
     public class BadgeController : ApiController
     {
+        /// <summary>
+        /// This API is used to get list of employees on the basis of the name prefix
+        /// </summary>
+        /// <param name="argLoggedInUser">Logged in user ID</param>
+        /// <param name="argNamePrefix">Letters to search employee name</param>
+        /// <returns></returns>
         [Route("GetUsersByName")]
         public IHttpActionResult GetUsersByName(int argLoggedInUser, string argNamePrefix)
         {
@@ -35,6 +44,12 @@ namespace SkillsDashboard.API.Controllers
             return Ok(l_UserDetailsBECollection);
         }
 
+        /// <summary>
+        /// This API is used to fetch list of badges being usd in system (e.g. Query badges)
+        /// </summary>
+        /// <param name="argLoggedInUser">Logged in user ID</param>
+        /// <param name="argBadgeType">Badge Type(EXPERTBADGE/USERBADGE)</param>
+        /// <returns></returns>
         [Route("GetBadges")]
         public IHttpActionResult GetBadges(int argLoggedInUser, string argBadgeType)
         {
@@ -59,6 +74,12 @@ namespace SkillsDashboard.API.Controllers
             return Ok(l_BadgeBECollection);
         }
 
+        /// <summary>
+        /// This API is used to save badge given by user
+        /// </summary>
+        /// <param name="argLoggedInUser">Logged in user ID</param>
+        /// <param name="argSaveBadgeBE">Badge Details to save</param>
+        /// <returns></returns>
         [Route("SaveBadgeForUser")]
         public IHttpActionResult SaveBadgeForUser(int argLoggedInUser, [FromBody]SaveBadgeBE argSaveBadgeBE)
         {
@@ -77,6 +98,12 @@ namespace SkillsDashboard.API.Controllers
             return Ok();
         }
 
+        /// <summary>
+        /// This API is used to modify the badge status by manager
+        /// </summary>
+        /// <param name="argLoggedInUser">Logged in user ID</param>
+        /// <param name="argSaveBadgeBE">Badge Details</param>
+        /// <returns></returns>
         [Route("ApproveBadge")]
         public IHttpActionResult ApproveBadge(int argLoggedInUser, [FromBody]SaveBadgeBE argSaveBadgeBE)
         {

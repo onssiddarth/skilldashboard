@@ -7,19 +7,24 @@ $(document).ready(function () {
     initialiseDataTable();
 });
 
+//Function used to register click/change events in page
 function registerEvents() {
     $("#ddl_request").on("change", loadApprovals);
 }
 
+//Initialise datatable for grid
 function initialiseDataTable() {
     $('#tbl_PendingSkillExpertApprovals').DataTable({
         responsive: true
     });
 }
 
+//AJAX call to load pending skill expert approvals
 function loadApprovals() {
     var requestType = $("#ddl_request").val();
     var parameters = { 'argRequestType': requestType };
+
+    $(".skill-dashboard-loader").show();
 
     $.ajax({
         type: "POST",
@@ -28,18 +33,18 @@ function loadApprovals() {
         success: function (response) {
             $("#div_PendingSkillExpertApprovalGrid").html(response);
             initialiseDataTable();
+            $(".skill-dashboard-loader").hide();
         },
         error: function (a,b,c) {
             displayErrorMessage('Pending approvals could not be loaded successfully.', 'alert-danger');
+            $(".skill-dashboard-loader").hide();
         }
 
     })
 }
 
-//This function is used to show the popup based on reqyest type and status
+//This function is used to show the popup based on request type and status
 function OpenActionPopup(argUniqueID) {
-
-    
     //Get the request type
     var requestType = GetRequestType(argUniqueID);
     var status = $("#" + argUniqueID + "").closest('tr').find('.td_Status').text();
@@ -52,7 +57,7 @@ function OpenActionPopup(argUniqueID) {
     }
 }
 
-
+//Show popup for schedule demo
 function showDemoSchedulePopup(argID) {
     
     //Hide the error message every time the popup opens
@@ -86,6 +91,7 @@ function showDemoSchedulePopup(argID) {
     $("#modal-schedule-demo").modal("show");
 }
 
+//Show popup for taking action (Approve/Reject)
 function showApproveRejectPopup(argUniqueID) {
     //Set global variable
     uniqueIDApproveReject = argUniqueID;
@@ -150,6 +156,7 @@ function showApproveRejectPopup(argUniqueID) {
     $("#modal-skillexpert-approve-request").modal('show');
 }
 
+//AJAX call to schedule demo by skill expert
 function ScheduleDemo() {
     var commentsEntered = '';
     var roomEntered = '';
@@ -188,6 +195,7 @@ function ScheduleDemo() {
         return false;
     }
     else {
+        $(".skill-dashboard-loader").show();
         //Create approval object
         var argScheduleDemo = new Object();
         argScheduleDemo.UniqueID = uniqueIDScheduleDemo.split('-')[1];
@@ -216,17 +224,20 @@ function ScheduleDemo() {
                     //Display error message
                     displayConfirmationMessage('Demo could not be scheduled successfully', 'alert-danger');
                 }
+
+                $(".skill-dashboard-loader").hide();
             },
             error: function (a, b, c) {
                 $("#modal-schedule-demo").modal('hide');
                 displayConfirmationMessage('Demo could not be scheduled successfully', 'alert-danger');
+                $(".skill-dashboard-loader").hide();
             }
         });  
     }
 
 }
 
-
+//OnKeyup event to remove validation message from room textbox once details are entered in textbox
 function removeValidationFromRoomText() {
     var roomEntered = $("#text_room").val();
     if (!roomEntered || roomEntered.trim().length < 1) {
@@ -238,6 +249,7 @@ function removeValidationFromRoomText() {
 
 }
 
+//OnKeyup event to remove validation message from comments textbox once details are entered in textbox
 function removeValidationApproveReject() {
     var textEntered = $("#actionable-skilltext-area").val();
     if (!textEntered || textEntered.trim().length < 1) {
@@ -248,6 +260,7 @@ function removeValidationApproveReject() {
     }
 }
 
+//OnKeyup event to remove validation message from demo textbox once details are entered in textbox
 function removeValidationForScheduleDemo() {
     var textEntered = $("#txt-demo").val();
     if (!textEntered || textEntered.trim().length < 1) {
@@ -258,7 +271,7 @@ function removeValidationForScheduleDemo() {
     }
 }
 
-
+//AJAX call to save skill expert action (APPROVE/REJECT)
 function SaveSkillExpertAction(argType) {
 
     //Check if valid contents are entered in text area
@@ -271,6 +284,8 @@ function SaveSkillExpertAction(argType) {
     else {
         $("#lbl_ActionableCommentErrorMessage").hide();
     }
+
+    $(".skill-dashboard-loader").show();
 
     //get the type 
     requestType = GetRequestType(uniqueIDApproveReject);
@@ -305,9 +320,11 @@ function SaveSkillExpertAction(argType) {
                 //Display error message
                 displayConfirmationMessage('Request could not be updated successfully', 'alert-danger');
             }
+            $(".skill-dashboard-loader").hide();
         },
         error: function (a, b, c) {
             $("#modal-approve-request").modal('hide');
+            $(".skill-dashboard-loader").hide();
             displayConfirmationMessage('Request could not be updated successfully', 'alert-danger');
         }
     });

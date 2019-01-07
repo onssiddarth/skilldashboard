@@ -13,6 +13,7 @@ using System.Web.Mvc;
 
 namespace SkillsDashboard.Controllers
 {
+    [Authorize(Roles = "SKILLEXPERT")]
     public class PendingSkillExpertRequestsController : SkillsDashboardBaseController
     {
         #region Page level declarations
@@ -28,12 +29,19 @@ namespace SkillsDashboard.Controllers
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
         }
 
+        /// <summary>
+        /// Action Result method to load main view for Skill Expert approvals page
+        /// </summary>
+        /// <returns></returns>
         public ActionResult Index()
         {
             PopulateDropdownValues();
             return View();
         }
 
+        /// <summary>
+        /// Method to populate request type dropdown
+        /// </summary>
         private void PopulateDropdownValues()
         {
             try
@@ -48,7 +56,11 @@ namespace SkillsDashboard.Controllers
             }
         }
 
-
+        /// <summary>
+        /// API call to get pending skill expert approvals
+        /// </summary>
+        /// <param name="argRequestType">Request Type</param>
+        /// <returns></returns>
         [HttpPost]
         public async Task<ActionResult> GetPendingSkillExpertApprovals(string argRequestType)
         {
@@ -73,6 +85,11 @@ namespace SkillsDashboard.Controllers
             return PartialView("_partialPendingSkillExpertApprovals", l_ApprovalCollection);
         }
 
+        /// <summary>
+        /// Method to convert SkillExpertBECollection to Model
+        /// </summary>
+        /// <param name="argApprovalsBECollection">Business Entity collection for skill expert approval</param>
+        /// <returns></returns>
         private PendingSkillExpertApprovalsCollection ConverPendingSkillExpertApprovalsToModel(PendingSkillExpertApprovalBECollection argApprovalsBECollection)
         {
             #region Declarations
@@ -115,6 +132,11 @@ namespace SkillsDashboard.Controllers
             return l_PendingApprovalsCollection;
         }
 
+        /// <summary>
+        /// HTTP POST method to schedule demo by skill expert
+        /// </summary>
+        /// <param name="argScheduleDemo">Demo Details</param>
+        /// <returns></returns>
         [HttpPost]
         public async Task<JsonResult> ScheduleDemo(ScheduleDemo argScheduleDemo)
         {
@@ -135,9 +157,9 @@ namespace SkillsDashboard.Controllers
         }
 
         /// <summary>
-        /// This method is used to cal WebAPI to save manager approval
+        /// This method is used to cal WebAPI to save demo details
         /// </summary>
-        /// <param name="argManagerApproval"></param>
+        /// <param name="argScheduleDemo">Demo details</param>
         /// <returns></returns>
         private async Task<HttpResponseMessage> SaveDemoToDatabase(ScheduleDemo argScheduleDemo)
         {
@@ -164,6 +186,11 @@ namespace SkillsDashboard.Controllers
             return l_Response;
         }
 
+        /// <summary>
+        /// This method is used to convert Demo Model to business Entity
+        /// </summary>
+        /// <param name="argScheduleDemo"></param>
+        /// <returns></returns>
         private ScheduleDemoBE ConvertDemoScheduleToBE(ScheduleDemo argScheduleDemo)
         {
             ScheduleDemoBE l_ScheduleDemoBE = new ScheduleDemoBE();
@@ -184,6 +211,11 @@ namespace SkillsDashboard.Controllers
             return l_ScheduleDemoBE;
         }
 
+        /// <summary>
+        /// HTTP POST method to save skill expert action (APPROVE/REJECT)
+        /// </summary>
+        /// <param name="argSkillExpertApproval">Skill Expert approval modal</param>
+        /// <returns></returns>
         [HttpPost]
         public async Task<JsonResult> SaveSkillExpertApproval(SkillExpertApproval argSkillExpertApproval)
         {
@@ -203,11 +235,10 @@ namespace SkillsDashboard.Controllers
             return Json(IsSuccess, JsonRequestBehavior.AllowGet);
         }
 
-
         /// <summary>
-        /// This method is used to cal WebAPI to save manager approval
+        /// This method is used to cal WebAPI to skill expert approval
         /// </summary>
-        /// <param name="argManagerApproval"></param>
+        /// <param name="argSkillExpertApproval">Skill Expert approval model</param>
         /// <returns></returns>
         private async Task<HttpResponseMessage> SaveSkillExpertResponseToDatabase(SkillExpertApproval argSkillExpertApproval)
         {

@@ -81,3 +81,4 @@ G:\DISS\Project\SourceCode\SkillsDashboard\obj\Debug\SkillsDashboard.Web.csproj.
 G:\DISS\Project\SourceCode\SkillsDashboard\obj\Debug\SkillsDashboard.Web.csproj.CopyComplete
 G:\DISS\Project\SourceCode\SkillsDashboard\obj\Debug\SkillsDashboard.dll
 G:\DISS\Project\SourceCode\SkillsDashboard\obj\Debug\SkillsDashboard.pdb
+G:\DISS\Project\SourceCode\SkillsDashboard\bin\DotNet.Highcharts.dll

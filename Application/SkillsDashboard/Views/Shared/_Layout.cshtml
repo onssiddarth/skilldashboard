@@ -1,4 +1,6 @@
-﻿<!DOCTYPE html>
+﻿@using System.Security.Claims;
+
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -9,8 +11,14 @@
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 
+    <script src="~/Scripts/Common.js"></script>
+    <link rel="stylesheet" type="text/css" href="~/Content/Animate.css">
     <link href="~/Content/Site.css" rel="stylesheet" />
-
+    @{
+        var l_roles = ((ClaimsIdentity)User.Identity).Claims
+                .Where(x => x.Type == ClaimTypes.Role)
+                .Select(y => y.Value);
+    }
 </head>
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
@@ -24,6 +32,23 @@
                 @Html.ActionLink("Skills Dashboard", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li>@Html.ActionLink("Find Expert", "Index", "Query")</li>
+                    <li>@Html.ActionLink("Give Query Badge", "RequestBadge", "Badge")</li>
+                    <li>@Html.ActionLink("Track Requests", "Index", "UserRequests")</li>
+
+                    @if (l_roles.Contains("MANAGER"))
+                    {
+                        <li>@Html.ActionLink("Pending Approvals", "Index", "PendingManagerRequests")</li>
+                    }
+
+                    @if (l_roles.Contains("SKILLEXPERT"))
+                    {
+                        <li>@Html.ActionLink("Pending Approvals", "Index", "PendingSkillExpertRequests")</li>
+                        <li>@Html.ActionLink("Give Badge", "GiveBadgeByExpert", "Badge")</li>
+                    }
+
+                </ul>
                 @Html.Partial("_LoginPartial")
             </div>
         </div>

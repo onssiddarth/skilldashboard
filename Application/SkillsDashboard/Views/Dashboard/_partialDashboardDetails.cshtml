@@ -1,0 +1,38 @@
+﻿@model SkillsDashboard.Models.Dashboard
+
+
+<div class="container">
+    <div class="row">
+        @{
+            Html.RenderPartial("_partialUserProfileDetails");
+        }
+
+        <div class="col-md-8 col-sm-12 col-xs-12">
+            <div id="skills_chartContainer">
+                @{
+                    Html.RenderPartial("_partialSkillChart");
+                }
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        @{
+            Html.RenderPartial("_partialBadgeDetails");
+        }
+    </div>
+
+    @if (Model.DisplayActionItems == true)
+    {
+        <div class="row">
+            @{
+                Html.RenderPartial("_partialDemoDetails");
+            }
+        </div>
+    }
+</div>
+
+
+
+    
+

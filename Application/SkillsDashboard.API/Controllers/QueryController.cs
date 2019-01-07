@@ -9,10 +9,18 @@ using SkillsDashboard.BLO;
 
 namespace SkillsDashboard.API.Controllers
 {
-    [Route("api/Query")]
+    /// <summary>
+    /// API for finding an expert to resolve query
+    /// </summary>
     public class QueryController : ApiController
     {
-        // GET: Query
+        /// <summary>
+        /// This API is used to get list of experts with required skills and subskills
+        /// </summary>
+        /// <param name="argLoggedInUser">Logged in User ID</param>
+        /// <param name="argSkillID">Skill ID</param>
+        /// <param name="argSubSkillID">SubSkill ID</param>
+        /// <returns></returns>
         [Route("GetQueryResults")]
         public IHttpActionResult GetQueryResults(int argLoggedInUser, int argSkillID, int argSubSkillID)
         {

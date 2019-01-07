@@ -1,0 +1,127 @@
+﻿@model SkillsDashboard.Models.Dashboard
+
+
+<script type="text/javascript">
+
+    var skillSetDataResponse = '@Model.SkillData';
+    var skillSetData = JSON.parse(skillSetDataResponse.replace(/&quot;/g, '"'));
+    var requiredSkillSets = [];
+    var acquiredSkillSets = [];
+    var skillNames = [];
+
+    //Get the values from skill JSON
+    for (var i = 0; i < skillSetData.length; i++) {
+
+        //Create arra for required and acquired skills
+
+        if (skillSetData[i].SkillType.toUpperCase() == 'REQUIRED') {
+            requiredSkillSets.push({ y: skillSetData[i].SkillPoints, 'SubskillData': skillSetData[i].SubSkillCollection }); //Required skills
+        }
+        else {
+            acquiredSkillSets.push({ y: skillSetData[i].SkillPoints, 'SubskillData': skillSetData[i].SubSkillCollection }); //Acquired skills
+        }
+
+        if ($.inArray(skillSetData[i].SkillName, skillNames) < 0) {
+            skillNames.push(skillSetData[i].SkillName); //SkillName array
+        }
+    }
+
+    var chart = new Highcharts.Chart({
+
+        chart: {
+            type: 'column',
+            renderTo: 'skills_chartContainer'
+        },
+
+        title: {
+            text: 'Skill Chart'
+        },
+
+        subtitle: {
+            text: 'Required and acquired points for your skill(s)'
+        },
+
+        legend: {
+            align: 'right',
+            verticalAlign: 'middle',
+            layout: 'vertical'
+        },
+
+        xAxis: {
+            categories: skillNames,
+            labels: {
+                x: -10
+            },
+            title: {
+                text: 'Skills'
+            }
+        },
+        tooltip: {
+            formatter: function () {
+                var tooltip;
+                var subSkillToolTipData = this.point.SubskillData;
+                if (this.name == "Required") {
+                    tooltip = '<b>Points for ' + this.x + ': </b>' + this.y + '<br>';
+                }
+                else {
+                    tooltip = '<b>Points for ' + this.x + ': </b>' + this.y + '<br>';
+                }
+
+                if (subSkillToolTipData != null) {
+                    for (var i = 0; i < subSkillToolTipData.length; i++) {
+                        tooltip += '<span>' + subSkillToolTipData[i].SubSkillName + '</span>:<span>' + subSkillToolTipData[i].SkillPoints + '</span><br>';
+                    }
+                }
+                return tooltip;
+            }
+        },
+
+        yAxis: {
+            allowDecimals: false,
+            title: {
+                text: 'Points'
+            }
+        },
+
+        series: [{
+            name: 'Required',
+            data: requiredSkillSets
+        },
+        {
+            name: 'Acquired',
+            data: acquiredSkillSets
+        }],
+
+        responsive: {
+            rules: [{
+                condition: {
+                    maxWidth: 1000
+                },
+                chartOptions: {
+                    legend: {
+                        align: 'center',
+                        verticalAlign: 'bottom',
+                        layout: 'horizontal'
+                    },
+                    yAxis: {
+                        labels: {
+                            align: 'left',
+                            x: 0,
+                            y: -5
+                        },
+                        title: {
+                            text: null
+                        }
+                    },
+                    subtitle: {
+                        text: null
+                    },
+                    credits: {
+                        enabled: false,
+                    }
+                }
+            }]
+        }
+    });
+
+</script>

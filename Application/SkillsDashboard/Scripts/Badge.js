@@ -2,6 +2,7 @@
     setAutopopulateForExpert();
 });
 
+//Set autocomplete for textbox to select user for giving badge
 function setAutopopulateForExpert() {
     $("#txt_BadgeGivenToName").autocomplete({
         source: function (request, response) {

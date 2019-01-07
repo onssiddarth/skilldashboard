@@ -14,6 +14,7 @@ using SkillsDashboard.Utilities;
 
 namespace SkillsDashboard.Controllers
 {
+    [Authorize]
     public class BadgeController : SkillsDashboardBaseController
     {
         #region Page level declarations
@@ -29,6 +30,11 @@ namespace SkillsDashboard.Controllers
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
         }
 
+        /// <summary>
+        /// Give badge by expert Action Result method
+        /// </summary>
+        /// <returns></returns>
+        [Authorize(Roles = "SKILLEXPERT")]
         public async Task<ActionResult> GiveBadgeByExpert()
         {
             SaveBadge l_SaveBadge = new SaveBadge();
@@ -47,6 +53,10 @@ namespace SkillsDashboard.Controllers
             return View(l_SaveBadge);
         }
 
+        /// <summary>
+        /// Action Result method to display request badge view
+        /// </summary>
+        /// <returns></returns>
         public async Task<ActionResult> RequestBadge()
         {
             SaveBadge l_SaveBadge = new SaveBadge();
@@ -65,7 +75,11 @@ namespace SkillsDashboard.Controllers
             return View(l_SaveBadge);
         }
 
-
+        /// <summary>
+        /// Method to get badge details from API
+        /// </summary>
+        /// <param name="argType">Badge Type</param>
+        /// <returns></returns>
         public async Task<BadgeBE> GetBadgeDetails(string argType)
         {
             #region Declarations
@@ -96,6 +110,12 @@ namespace SkillsDashboard.Controllers
             return l_BadgeBE;
         }
 
+        /// <summary>
+        /// HTTP POST method to save badge details
+        /// </summary>
+        /// <param name="argSaveBadge">Badge Details</param>
+        /// <param name="argRequestType">Request Type</param>
+        /// <returns></returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> SaveUserBadge(SaveBadge argSaveBadge, string argRequestType)
@@ -136,6 +156,11 @@ namespace SkillsDashboard.Controllers
             }
         }
 
+        /// <summary>
+        /// API call to save badge given for user
+        /// </summary>
+        /// <param name="argSaveBadge">Badge Details</param>
+        /// <returns></returns>
         private async Task<HttpResponseMessage> SaveBadge(SaveBadge argSaveBadge)
         {
             #region Declarations
@@ -160,6 +185,11 @@ namespace SkillsDashboard.Controllers
             return l_Response;
         }
 
+        /// <summary>
+        /// Method to convert Badge model to business entity
+        /// </summary>
+        /// <param name="argSaveBadge">Badge Model</param>
+        /// <returns></returns>
         private SaveBadgeBE ConvertBadgeRequestToBE(SaveBadge argSaveBadge)
         {
             SaveBadgeBE l_SaveBadgeBE = new SaveBadgeBE();
@@ -180,6 +210,11 @@ namespace SkillsDashboard.Controllers
             return l_SaveBadgeBE;
         }
 
+        /// <summary>
+        /// Method to get user details on the basis of name Prefix
+        /// </summary>
+        /// <param name="argNamePrefix"></param>
+        /// <returns></returns>
         [HttpPost]
         public async Task<JsonResult> GetEmployeesByName(string argNamePrefix)
         {
@@ -187,6 +222,11 @@ namespace SkillsDashboard.Controllers
             return Json(l_EmployeeData, JsonRequestBehavior.AllowGet);
         }
 
+        /// <summary>
+        /// API call to get employee details on the basis if name prefix
+        /// </summary>
+        /// <param name="argName">Name prefix</param>
+        /// <returns></returns>
         public async Task<UserDetailsBECollection> GetEmployeeDetailsFromDatabase(string argName)
         {
             #region Declarations

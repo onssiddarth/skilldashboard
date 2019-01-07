@@ -27,6 +27,7 @@ namespace SkillsDashboard.BLO
         public const string BADGEGIVENTO = "@BadgeGivenTo";
         public const string BADGEID = "@BadgeID";
         public const string USERBADGEID = "@UserBadgeID";
+        public const string USERID = "@UserID";
 
     }
 }

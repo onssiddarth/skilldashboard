@@ -14,5 +14,22 @@ namespace SkillsDashboard.Models
         public int UniqueID { get; set; }
 
         public string Room { get; set; }
+
+        public int SubSkillID { get; set; }
+
+        public int SkillID { get; set; }
+
+        public string SubSkillName { get; set; }
+
+        public string SkillName { get; set; }
+
+        public int UserID { get; set; }
+
+        public string EventConductedBy { get; set; }
+    }
+
+    public class ScheduleDemoCollection: List<ScheduleDemo>
+    {
+
     }
 }

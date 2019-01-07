@@ -1,4 +1,5 @@
-﻿function getSubskills() {
+﻿//AJAX call used to get subskills on the basis of skill selected
+function getSubskills() {
     var skill = $("#ddl_skill").val();
 
     var parameters = { 'argSkillID': skill };
@@ -12,6 +13,8 @@
         $("#skill-error").hide();
         $("#subskill-error").hide();
     }
+
+    $(".skill-dashboard-loader").show();
 
 
     $.ajax({
@@ -28,20 +31,23 @@
                 optionsAsString += "<option value='" + response[i].SubSkillID + "'>" + response[i].SubSkillName + "</option>";
             }
             $('#ddl_subskill').append(optionsAsString);
+            $(".skill-dashboard-loader").hide();
             
         },
         error: function (a, b, c) {
-           
+            $(".skill-dashboard-loader").hide();
         }
     });
 }
 
+//Initialise datatable for grid
 function initialiseDataTable() {
     $('#tbl_GetQueryResults').DataTable({
         responsive: true
     });
 }
 
+//AJAX call to get Users on the basis of skill and subskill selected
 function GetResolvers() {
     var skill = $("#ddl_skill").val();
     var subskill = $("#ddl_subskill").val();
@@ -65,6 +71,7 @@ function GetResolvers() {
 
     var parameters = { 'argSkillID': skill, 'argSubSkillID': subskill };
     if (IsInputDataValid) {
+        $(".skill-dashboard-loader").show();
         $.ajax({
             type: "POST",
             url: URL["GetQueryResults"],
@@ -72,9 +79,11 @@ function GetResolvers() {
             success: function (response) {
                 $("#div_QueryResults").html(response);
                 initialiseDataTable();
+                $(".skill-dashboard-loader").hide();
             },
             error: function (response) {
                 console.log("Some error in application!");
+                $(".skill-dashboard-loader").hide();
             }
 
         })

@@ -15,6 +15,7 @@ using static SkillsDashboard.Utilities.SkillConstants;
 
 namespace SkillsDashboard.Controllers
 {
+    [Authorize]
     public class ImproveSkillsController : SkillsDashboardBaseController
     {
         #region Page level declarations
@@ -122,6 +123,11 @@ namespace SkillsDashboard.Controllers
             return PartialView("_partialImproveSubskills", l_ImproveSkills);
         }
 
+        /// <summary>
+        /// HTTP Post method to submit skills for approval
+        /// </summary>
+        /// <param name="argImproveSkills"></param>
+        /// <returns></returns>
         [HttpPost]
         public async Task<ActionResult> SendForApproval(ImproveSkills argImproveSkills)
         {

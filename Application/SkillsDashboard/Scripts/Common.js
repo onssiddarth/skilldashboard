@@ -1,4 +1,6 @@
-﻿//This function is used to fetch the request type
+﻿/*This is a common JS file which contains generic functions*/
+
+//This function is used to fetch the request type
 function GetRequestType(argUniqueID) {
     var requestLabel = $("#" + argUniqueID + "").closest('tr').find('.td_RequestType').text();
     var requestType = '';
@@ -16,7 +18,6 @@ function GetRequestType(argUniqueID) {
             break;
 
     }
-
     return requestType;
 }
 
@@ -37,4 +38,14 @@ function displayConfirmationMessage(argMessage, argType) {
     var alertTemplate = "<div class='alert #message-type#'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>#message#</div>";
     var resultTemplate = alertTemplate.replace("#message-type#", argType).replace("#message#", argMessage);
     $(".confirmation-message").html(resultTemplate);
+}
+
+//This function is used to show spinner
+function ShowLoader() {
+    $(".skill-dashboard-loader").show();
+}
+
+//This function is used to hide spinner
+function hideLoader() {
+    $(".skill-dashboard-loader").hide();
 }

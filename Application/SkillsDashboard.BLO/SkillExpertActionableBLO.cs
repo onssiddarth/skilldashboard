@@ -10,6 +10,12 @@ namespace SkillsDashboard.BLO
 {
     public class SkillExpertActionableBLO
     {
+        /// <summary>
+        /// Used to get list of pending approvals for skill expert
+        /// </summary>
+        /// <param name="argLoggedInUser">Logged in User ID</param>
+        /// <param name="argType">Request Type</param>
+        /// <returns></returns>
         public PendingSkillExpertApprovalBECollection GetPendingSkillExpertApprovals(int argLoggedInUser, string argType)
         {
             #region Declarations
@@ -74,6 +80,12 @@ namespace SkillsDashboard.BLO
             return l_requestCollection;
         }
 
+        /// <summary>
+        /// Used to save skill expert action (APPROVE/REJECT)
+        /// </summary>
+        /// <param name="argLoggedInUser">Logged in user ID</param>
+        /// <param name="argSkillExpertApprovalBE">Skill expert approval details</param>
+        /// <returns></returns>
         public void SaveSkillExpertApprovals(int argLoggedInUser, SkillExpertApprovalBE argSkillExpertApprovalBE)
         {
             #region Declarations
@@ -101,6 +113,12 @@ namespace SkillsDashboard.BLO
             }
         }
 
+        /// <summary>
+        /// Used to save Schedule Demo by skill expert
+        /// </summary>
+        /// <param name="argLoggedInUser">Logged in user ID</param>
+        /// <param name="argScheduleDemoBE">Demo details</param>
+        /// <returns></returns>
         public void ScheduleDemo(int argLoggedInUser, ScheduleDemoBE argScheduleDemoBE)
         {
             #region Declarations

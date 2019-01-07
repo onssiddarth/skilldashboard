@@ -79,6 +79,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BadgeBLO.cs" />
+    <Compile Include="DashboardBLO.cs" />
     <Compile Include="ManagerActionablesBLO.cs" />
     <Compile Include="ProcedureParams.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -86,7 +87,7 @@
     <Compile Include="SkillBLO.cs" />
     <Compile Include="SkillExpertActionableBLO.cs" />
     <Compile Include="StoredProcedures.cs" />
-    <Compile Include="TestUserBLO.cs" />
+    <Compile Include="SyncUserSkillsBLO.cs" />
     <Compile Include="UserRequestsBLO.cs" />
   </ItemGroup>
   <ItemGroup>
